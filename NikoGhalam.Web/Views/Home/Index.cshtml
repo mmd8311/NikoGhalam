@@ -1,0 +1,292 @@
+﻿@model List<Product>
+
+<section class="pt-0 home-section-3">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col pe-0">
+                <div class="home-banner p-right">
+                    <div class="contain-banner d-flex justify-content-end">
+                        <div>
+                            <span>تخفیف بهاری</span>
+                            <h1>بهاری پر از هنر</h1>
+                            <p>20% تخفیف ویژه بهار روی تمامی دوره های خوشنویسی. همین حالا .</p>
+                            <div class="link-hover-anim underline">
+                                <a href="#product-section">
+                                    اکنون ثبت نام کنید
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <img style="transform: scaleX(-1);" class="img-fluid" src="/assets/images//layout-3/2.jpg" alt="بنر خانه">
+                </div>
+                <ul class="social-icon">
+                    <li>
+                        <a href="#">
+                            <h6>ما را دنبال کنید</h6>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/" target="_blank">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </li>
+                 @*    <li>
+                        <a href="https://www.facebook.com/" target="_blank">
+                            <svg>
+                                <img src="/assets/images/svg-icon/eitaa.svg" alt="" style="width:15px">
+                            </svg>
+                        </a>
+                    </li> *@
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-b-space pt-0">
+    <div class="heading-banner">
+        <div class="custom-container container">
+            <div class="row align-items-center">
+                <div class="col-sm-6">
+                    <h4>محصول</h4>
+                </div>
+                <div class="col-sm-6">
+                    <ul class="breadcrumb float-end">
+                        <li class="breadcrumb-item"> <a href="index.html">خانه</a></li>
+                        <li class="breadcrumb-item active"> <a href="#">محصول</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-b-space pt-0 product-thumbnail-page" id="product-section">
+    <div class="custom-container container">
+        <div class="row gy-4">
+            <div class="col-lg-6">
+                <div class="row sticky">
+                    <div class="col-sm-2 col-3">
+                        <div class="swiper product-slider product-slider-img">
+                            <div class="swiper-wrapper">
+
+                                @foreach (var product in Model)
+                                {
+                                    @if (!string.IsNullOrEmpty(product.ImageUrl))
+                                    {
+                                        <div class="swiper-slide">
+                                            <img src="@product.ImageUrl" alt="" class="product-image"
+                                                 data-id="@product.Id"
+                                                 data-name="@product.Name"
+                                                 data-description="@product.Description"
+                                                 data-price="@product.Price"
+                                                 data-image="@product.ImageUrl">
+
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-10 col-9">
+                        <div class="swiper product-slider-thumb product-slider-img-1 p-2 bg-white rounded-xl shadow-sm">
+                            <div class="swiper-wrapper ratio_square-2">
+                                <div class="swiper-slide">
+                                    <img class="bg-img rounded-lg shadow-sm border border-gray-100 transition-all hover:shadow-md"
+                                         src="/assets/images/product/slider/cover.jpg"
+                                         alt="جلد">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="product-detail-box">
+                    <div class="product-option">
+                        <h3 id="product-name">@Model.First().Name</h3>
+                        <p id="product-price">@Model.First().Price</p>
+                        <div class="">
+                            <p id="product-description">@Model.First().Description</p>
+                        </div>
+                        <div class="quantity-box d-flex align-items-center gap-3">
+                            <div class="d-flex align-items-center gap-3 w-100">
+                                <a class="btn btn_black sm w-100 text-center py-2 fw-bold fs-6 add-to-cart"
+                                   style="height: 42px; font-size: 14px;"
+                                   href="#"
+                                   data-bs-toggle="offcanvas"
+                                   data-bs-target="#offcanvasRight"
+                                   aria-controls="offcanvasRight"
+                                   data-id="@Model.First().Id"
+                                   data-name="@Model.First().Name"
+                                   data-price="@Model.First().Price"
+                                   data-image="@Model.First().ImageUrl">افزودن به سبد خرید</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="offcanvas offcanvas-end shopping-details" id="offcanvasRight" tabindex="-1" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h4 class="offcanvas-title" id="offcanvasRightLabel">سبد خرید</h4>
+        <button class="btn-close" type="button" data-bs-dismiss="offcanvas" aria-label="بستن"></button>
+    </div>
+    <div class="offcanvas-body theme-scrollbar">
+        <ul class="offcanvas-cart" id="cart-items">
+            <!-- محصولات اضافه شده به سبد خرید در اینجا نمایش داده می‌شوند -->
+        </ul>
+    </div>
+    <div class="offcanvas-footer">
+        <div class="price-box">
+            <h6>جمع کل :</h6>
+            <p id="total-price">تومان 0</p>
+        </div>
+        <div class="cart-button">
+            <a class="btn btn_outline" href="/Cart">مشاهده سبد خرید</a>
+        </div>
+    </div>
+</div>
+
+
+
+<section class="section-t-space">
+    <div class="custom-container container service">
+        <ul>
+            <li>
+                <div class="service-block">
+                    <img src="../assets/images/svg-icon/1.svg" alt="">
+                    <div>
+                        <h6>حمل و نقل در سراسر ایران</h6>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="service-block">
+                    <img src="../assets/images/svg-icon/2.svg" alt="">
+                    <div>
+                        <h6>برگشت و تعویض</h6>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="service-block">
+                    <img src="../assets/images/svg-icon/3.svg" alt="">
+                    <div>
+                        <h6>پشتیبانی فنی</h6>
+                        <p>پشتیبانی 24/7</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+<section class="section-t-space">
+    <div class="custom-container container">
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <h4>عکس‌های نمایشگاهمون</h4>
+            </div>
+            <div class="col-12">
+                <div class="row gy-4 ratio_45">
+                    <div class="col-md-4">
+                        <div class="collection-banner">
+                            <img class="img-fluid" src="/assets/images/banner/IMG_20250310_220342_742.jpg" alt="عکس نمایشگاه 1">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="collection-banner">
+                            <img class="img-fluid" src="/assets/images/banner/IMG_20250310_220342_980.jpg" alt="عکس نمایشگاه 2">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="collection-banner">
+                            <img class="img-fluid" src="/assets/images/banner/IMG_20250310_220343_093.jpg" alt="عکس نمایشگاه 3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*
+<section class="section-t-space">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-sm-3 col-6">
+                <div class="brand-logo-txt">
+                    <div>
+                        <h3>برندهای برتر</h3>
+                        <h4>تا ۴۰٪ تخفیف</h4>
+                        <div class="link-hover-anim underline">
+                            <a class="btn btn_underline link-strong link-strong-unhovered" href="index.html">
+                                خرید کن
+                                اکنون
+                                <svg>
+                                    <use href="../assets/svg/icon-sprite.svg#arrow"></use>
+                                </svg>
+                            </a>
+                            <a class="btn btn_underline link-strong link-strong-hovered" href="index.html">
+                                خرید کن
+                                اکنون
+                                <svg>
+                                    <use href="../assets/svg/icon-sprite.svg#arrow"></use>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9 col-6 p-0">
+                <div class="swiper slide-2">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide logo-block">
+                            <a href="collection-left-sidebar.html">
+                                <img src="../assets/images/logos/1.png" alt="لوگو">
+                            </a>
+                        </div>
+                        <div class="swiper-slide logo-block">
+                            <a href="collection-left-sidebar.html">
+                                <img src="../assets/images/logos/2.png" alt="لوگو">
+                            </a>
+                        </div>
+                        <div class="swiper-slide logo-block">
+                            <a href="collection-left-sidebar.html">
+                                <img src="../assets/images/logos/3.png" alt="لوگو">
+                            </a>
+                        </div>
+                        <div class="swiper-slide logo-block">
+                            <a href="collection-left-sidebar.html">
+                                <img src="../assets/images/logos/4.png" alt="لوگو">
+                            </a>
+                        </div>
+                        <div class="swiper-slide logo-block">
+                            <a href="collection-left-sidebar.html">
+                                <img src="../assets/images/logos/5.png" alt="لوگو">
+                            </a>
+                        </div>
+                        <div class="swiper-slide logo-block">
+                            <a href="collection-left-sidebar.html">
+                                <img src="../assets/images/logos/6.png" alt="لوگو">
+                            </a>
+                        </div>
+                        <div class="swiper-slide logo-block">
+                            <a href="collection-left-sidebar.html">
+                                <img src="../assets/images/logos/7.png" alt="لوگو">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> *@
+
+
+
+@section Scripts {
+    <script type="text/javascript" src="/Scripts/Home/Index.js"></script>
+}

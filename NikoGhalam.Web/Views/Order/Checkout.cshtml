@@ -1,0 +1,435 @@
+﻿<div class="tap-top">
+    <div><i class="fa-solid fa-angle-up"></i></div>
+</div><span class="cursor"><span class="cursor-move-inner"><span class="cursor-inner"></span></span><span class="cursor-move-outer"><span class="cursor-outer"></span></span></span>
+<section class="section-b-space pt-0">
+    <div class="heading-banner">
+        <div class="custom-container container">
+            <div class="row align-items-center">
+                <div class="col-sm-6">
+                    <h4>تسویه حساب</h4>
+                </div>
+                <div class="col-sm-6">
+                    <ul class="breadcrumb float-end">
+                        <li class="breadcrumb-item"> <a href="index.html">خانه</a></li>
+                        <li class="breadcrumb-item active"> <a href="#">تسویه حساب</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div><section class="section-b-space pt-0 checkout-page">
+
+        <div class="custom-container container">
+            <div class="row">
+                <input type="hidden" id="InvoiceId" value="@ViewBag.InvoiceId" />
+
+                <div class="col-xxl-9 col-lg-8">
+                    <div class="left-sidebar-checkout sticky">
+                        <div class="tab-pane" role="tabpanel" aria-labelledby="address-tab">
+                            <div class="dashboard-right-box">
+                                <div class="address-tab">
+                                    <div class="sidebar-title">
+                                        <div class="loader-line"></div>
+                                        <h4>آدرس</h4>
+                                    </div>
+                                    <div class="row gy-3" id="address-list">
+                                        <!-- آدرس‌های کاربر اینجا به‌صورت داینامیک اضافه خواهند شد -->
+                                    </div>
+                                    <button class="btn add-address" data-bs-toggle="modal" data-bs-target="#add-address" title="افزودن آدرس جدید" tabindex="0">+ افزودن آدرس</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="payment-options">
+                            <h4 class="mb-3">روش پرداخت</h4>
+                            <div class="">
+                                <div class="col-sm-6">
+                                    <div class="payment-box">
+                                        <input class="custom-radio me-2" id="cod" type="radio" checked name="paymentMethod">
+                                        <label for="cod">پرداخت در محل</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-lg-4">
+                    <div class="right-sidebar-checkout">
+                        <h4>تسویه حساب</h4>
+                        <div class="cart-listing">
+                            <ul id="invoice-items">
+                                <!-- اقلام فاکتور اینجا به‌صورت داینامیک اضافه خواهند شد -->
+                            </ul>
+                        </div>
+                        <div class="summary-total">
+                            <ul id="invoice-summary">
+                                <!-- جمع کل اینجا به‌صورت داینامیک اضافه خواهد شد -->
+                            </ul>
+                        </div>
+                        <button class="btn btn-solid-default w-100" id="submit-order">ثبت سفارش</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="offcanvas offcanvas-end shopping-details" id="offcanvasRight" tabindex="-1" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h4 class="offcanvas-title" id="offcanvasRightLabel">سبد خرید</h4><button class="btn-close" type="button" data-bs-dismiss="offcanvas" aria-label="بستن"></button>
+        </div>
+        <div class="offcanvas-body theme-scrollbar">
+            <ul class="offcanvas-cart">
+                <li>
+                    <a href="#"> <img src="/assets/images/cart/1.jpg" alt=""></a>
+                    <div>
+                        <h6 class="mb-0">پیراهن مردانه</h6>
+                        <p>۳۵ تومان<del>۴۰ تومان</del><span class="btn-cart"><span تومان class="btn-cart__total" id="total">۱۰۵</span></span></p>
+                        <div class="btn-containter">
+                            <div class="btn-control">
+                                <button class="btn-control__remove" id="btn-remove">&minus;</button>
+                                <div class="btn-control__quantity">
+                                    <div id="quantity-previous">۲</div>
+                                    <div id="quantity-current">۳</div>
+                                    <div id="quantity-next">۴</div>
+                                </div><button class="btn-control__add" id="btn-add">+</button>
+                            </div>
+                        </div>
+                    </div><i class="iconsax delete-icon" data-icon="trash"></i>
+                </li>
+                <li>
+                    <a href="#"> <img src="/assets/images/cart/2.jpg" alt=""></a>
+                    <div>
+                        <h6 class="mb-0">پیراهن مردانه</h6>
+                        <p>۳۵ تومان<del>۴۰ تومان</del><span class="btn-cart"><span تومان class="btn-cart__total" id="total1">۱۰۵</span></span></p>
+                        <div class="btn-containter">
+                            <div class="btn-control">
+                                <button class="btn-control__remove" id="btn-remove1">&minus;</button>
+                                <div class="btn-control__quantity">
+                                    <div id="quantity1-previous">۲</div>
+                                    <div id="quantity1-current">۳</div>
+                                    <div id="quantity1-next">۴</div>
+                                </div><button class="btn-control__add" id="btn-add1">+</button>
+                            </div>
+                        </div>
+                    </div><i class="iconsax delete-icon" data-icon="trash"></i>
+                </li>
+                <li>
+                    <a href="#"> <img src="/assets/images/cart/3.jpg" alt=""></a>
+                    <div>
+                        <h6 class="mb-0">پیراهن مردانه</h6>
+                        <p>۳۵ تومان<del>۴۰ تومان</del><span class="btn-cart"><span تومان class="btn-cart__total" id="total2">۱۰۵</span></span></p>
+                        <div class="btn-containter">
+                            <div class="btn-control">
+                                <button class="btn-control__remove" id="btn-remove2">&minus;</button>
+                                <div class="btn-control__quantity">
+                                    <div id="quantity2-previous">۲</div>
+                                    <div id="quantity2-current">۳</div>
+                                    <div id="quantity2-next">۴</div>
+                                </div><button class="btn-control__add" id="btn-add2">+</button>
+                            </div>
+                        </div>
+                    </div><i class="iconsax delete-icon" data-icon="trash"></i>
+                </li>
+                <li>
+                    <a href="#"> <img src="/assets/images/cart/4.jpg" alt=""></a>
+                    <div>
+                        <h6 class="mb-0">پیراهن مردانه</h6>
+                        <p>۳۵ تومان<del>۴۰ تومان</del><span class="btn-cart"><span تومان class="btn-cart__total" id="total3">۱۰۵</span></span></p>
+                        <div class="btn-containter">
+                            <div class="btn-control">
+                                <button class="btn-control__remove" id="btn-remove3">&minus;</button>
+                                <div class="btn-control__quantity">
+                                    <div id="quantity3-previous">۲</div>
+                                    <div id="quantity3-current">۳</div>
+                                    <div id="quantity3-next">۴</div>
+                                </div><button class="btn-control__add" id="btn-add3">+</button>
+                            </div>
+                        </div>
+                    </div><i class="iconsax delete-icon" data-icon="trash"></i>
+                </li>
+            </ul>
+        </div>
+        <div class="offcanvas-footer">
+            <p>با خرج کردن <span>۱۴.۸۱ تومان </span>بیشتر از <span>ارسال رایگان</span> لذت ببرید!</p>
+            <div class="footer-range-slider">
+                <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="46" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated theme-default" style="width: 46%"></div>
+                </div>
+            </div>
+            <div class="price-box">
+                <h6>مجموع :</h6>
+                <p>۴۹.۵۹ تومان آمریکا</p>
+            </div>
+            <div class="cart-button"> <a class="btn btn_outline" href="cart.html"> مشاهده سبد خرید</a><a class="btn btn_black" href="check-out.html"> پرداخت</a></div>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-top search-details" id="offcanvasTop" tabindex="-1" aria-labelledby="offcanvasTopLabel">
+        <div class="offcanvas-header"><button class="btn-close" type="button" data-bs-dismiss="offcanvas" aria-label="بستن"><i class="fa-solid fa-xmark"></i></button></div>
+        <div class="offcanvas-body theme-scrollbar">
+            <div class="container">
+                <h3>دنبال چه چیزی هستید؟</h3>
+                <div class="search-box"> <input type="search" name="text" placeholder="دنبال چی میگردی…"><i class="iconsax" data-icon="search-normal-2"></i></div>
+                <h4>جستجوهای محبوب</h4>
+                <ul class="rapid-search">
+                    <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>شلوار جین زنانه</a></li>
+                    <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>کت زنانه</a></li>
+                    <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>شلوار جین مردانه</a></li>
+                    <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>کت مردانه</a></li>
+                    <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>تی شرت مردانه</a></li>
+                    <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>کفش مردانه</a></li>
+                    <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>تی شرت زنانه</a></li>
+                    <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>کیف</a></li>
+                    <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>کتانی زنانه</a></li>
+                    <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>لباس</a></li>
+                </ul>
+                <h4>ممکن است دوست داشته باشید</h4>
+                <div class="row gy-4 ratio_square-2 preemptive-search">
+                    <div class="col-xl-2 col-sm-4 col-6">
+                        <div class="product-box-6">
+                            <div class="img-wrapper">
+                                <div class="product-image"><a href="product.html"> <img class="bg-img" src="/assets/images/product/product-2/blazers/1.jpg" alt="product"></a></div>
+                            </div>
+                            <div class="product-detail">
+                                <div>
+                                    <a href="product.html">
+                                        <h6> تاپ شیک زنانه</h6>
+                                    </a>
+                                    <p>۵۰ تومان </p>
+                                    <ul class="rating">
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star-half-stroke"></i></li>
+                                        <li><i class="fa-regular fa-star"></i></li>
+                                        <li>۴+</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-sm-4 col-6">
+                        <div class="product-box-6">
+                            <div class="img-wrapper">
+                                <div class="product-image"><a href="product.html"> <img class="bg-img" src="/assets/images/product/product-2/blazers/2.jpg" alt="product"></a></div>
+                            </div>
+                            <div class="product-detail">
+                                <div>
+                                    <a href="product.html">
+                                        <h6> تاپ شیک زنانه</h6>
+                                    </a>
+                                    <p>۹۵ تومان <del>۱۴۰ تومان</del></p>
+                                    <ul class="rating">
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star-half-stroke"></i></li>
+                                        <li><i class="fa-regular fa-star"></i></li>
+                                        <li><i class="fa-regular fa-star"></i></li>
+                                        <li>۳+</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-sm-4 col-6">
+                        <div class="product-box-6">
+                            <div class="img-wrapper">
+                                <div class="product-image"><a href="product.html"> <img class="bg-img" src="/assets/images/product/product-2/blazers/3.jpg" alt="product"></a></div>
+                            </div>
+                            <div class="product-detail">
+                                <div>
+                                    <a href="product.html">
+                                        <h6> تاپ شیک زنانه</h6>
+                                    </a>
+                                    <p>۸۰ تومان <del>۱۴۰ تومان</del></p>
+                                    <ul class="rating">
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star-half-stroke"></i></li>
+                                        <li><i class="fa-regular fa-star"></i></li>
+                                        <li>۴</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-sm-4 col-6">
+                        <div class="product-box-6">
+                            <div class="img-wrapper">
+                                <div class="product-image"><a href="product.html"> <img class="bg-img" src="/assets/images/product/product-2/blazers/4.jpg" alt="product"></a></div>
+                            </div>
+                            <div class="product-detail">
+                                <div>
+                                    <a href="product.html">
+                                        <h6> تاپ شیک زنانه</h6>
+                                    </a>
+                                    <p>۹۰ تومان </p>
+                                    <ul class="rating">
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star-half-stroke"></i></li>
+                                        <li><i class="fa-regular fa-star"></i></li>
+                                        <li>۲+</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-sm-4 col-6">
+                        <div class="product-box-6">
+                            <div class="img-wrapper">
+                                <div class="product-image"><a href="product.html"> <img class="bg-img" src="/assets/images/product/product-2/blazers/5.jpg" alt="product"></a></div>
+                            </div>
+                            <div class="product-detail">
+                                <div>
+                                    <a href="product.html">
+                                        <h6> تاپ شیک زنانه</h6>
+                                    </a>
+                                    <p>۱۸۰ تومان <del>۱۴۰ تومان</del></p>
+                                    <ul class="rating">
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star"></i></li>
+                                        <li><i class="fa-solid fa-star-half-stroke"></i></li>
+                                        <li><i class="fa-regular fa-star"></i></li>
+                                        <li>۴+</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-sm-4 col-6">
+                        <div class="product-box-6">
+                            <div class="img-wrapper">
+                                <div class="product-image"><a href="product.html"> <img class="bg-img" src="/assets/images/product/product-2/blazers/6.jpg" alt="product"></a></div>
+                            </div>
+                            <div class="product-detail">
+                                <a href="product.html">
+                                    <h6> تاپ شیک زنانه</h6>
+                                </a>
+                                <p>۱۲۰ تومان </p>
+                                <ul class="rating">
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star-half-stroke"></i></li>
+                                    <li><i class="fa-regular fa-star"></i></li>
+                                    <li>۴+</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- مودال افزودن آدرس جدید -->
+    <div class="reviews-modal modal theme-modal fade" id="add-address" tabindex="-1" role="dialog" aria-modal="true">
+        <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>ویرایش آدرس</h4>
+                    <button class="btn-close" id="edit_Address_close" type="button" data-bs-dismiss="modal" aria-label="بستن"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <input type="hidden" id="Edit_Address_Id">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="from-group">
+                                <label class="form-label">عنوان</label>
+                                <input class="form-control" id="Address_Title" type="text" placeholder="عنوان آدرس را وارد کنید.">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="from-group">
+                                <label class="form-label">کد پستی</label>
+                                <input class="form-control" id="PostalCode" type="text" placeholder="کد پستی خود را وارد کنید.">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="from-group">
+                                <label class="form-label">استان</label>
+                                <input id="Province" class="form-control" type="text" placeholder="استان خود را وارد کنید.">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="from-group">
+                                <label class="form-label">شهر</label>
+                                <input id="City" class="form-control" type="text" placeholder="شهر خود را وارد کنید.">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="from-group">
+                                <label class="form-label">تلفن</label>
+                                <input id="PhoneNumber" class="form-control" type="number" placeholder="تلفن خود را وارد کنید.">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="from-group">
+                                <label class="form-label">آدرس</label>
+                                <textarea id="AddressText" class="form-control" cols="30" rows="5" placeholder="آدرس خود را بنویسید..."></textarea>
+                            </div>
+                        </div>
+                        <button class="btn btn-submit" id="Address_submit" type="submit" data-bs-dismiss="modal" aria-label="بستن">ثبت</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="reviews-modal modal theme-modal fade" id="edit-address" tabindex="-1" role="dialog" aria-modal="true">
+        <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>ویرایش آدرس</h4>
+                    <button class="btn-close" id="edit_Address_close" type="button" data-bs-dismiss="modal" aria-label="بستن"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <input type="hidden" id="Edit_Address_Id">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="from-group">
+                                <label class="form-label">عنوان</label>
+                                <input class="form-control" id="Edit_Address_Title" type="text" placeholder="عنوان آدرس را وارد کنید.">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="from-group">
+                                <label class="form-label">کد پستی</label>
+                                <input class="form-control" id="Edit_PostalCode" type="text" placeholder="کد پستی خود را وارد کنید.">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="from-group">
+                                <label class="form-label">استان</label>
+                                <input id="Edit_Province" class="form-control" type="text" placeholder="استان خود را وارد کنید.">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="from-group">
+                                <label class="form-label">شهر</label>
+                                <input id="Edit_City" class="form-control" type="text" placeholder="شهر خود را وارد کنید.">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="from-group">
+                                <label class="form-label">تلفن</label>
+                                <input id="Edit_PhoneNumber" class="form-control" type="number" placeholder="تلفن خود را وارد کنید.">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="from-group">
+                                <label class="form-label">آدرس</label>
+                                <textarea id="Edit_AddressText" class="form-control" cols="30" rows="5" placeholder="آدرس خود را بنویسید..."></textarea>
+                            </div>
+                        </div>
+                        <button class="btn btn-submit" id="Edit_Address_submit" type="submit" data-bs-dismiss="modal" aria-label="بستن">ویرایش</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @section Scripts {
+        <script src="~/Scripts/Order/Index.js"></script>
+    }

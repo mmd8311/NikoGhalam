@@ -1,0 +1,413 @@
+﻿<div class="tap-top">
+    <div><i class="fa-solid fa-angle-up"></i></div>
+</div><span class="cursor"><span class="cursor-move-inner"><span class="cursor-inner"></span></span><span class="cursor-move-outer"><span class="cursor-outer"></span></span></span>
+<section class="section-b-space pt-0">
+    <div class="heading-banner">
+        <div class="custom-container container">
+            <div class="row align-items-center">
+                <div class="col-sm-6">
+                    <h4>سبد خرید</h4>
+                </div>
+                <div class="col-sm-6">
+                    <ul class="breadcrumb float-end">
+                        <li class="breadcrumb-item"> <a href="index.html">خانه </a></li>
+                        <li class="breadcrumb-item active"> <a href="#">سبد خرید</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-b-space pt-0">
+    <div class="custom-container container">
+        <div class="container">
+            <h1>سبد خرید</h1>
+            <div class="row g-4">
+                <!-- ستون خلاصه سبد خرید (سمت چپ در دسکتاپ، بالا در موبایل) -->
+                <div class="col-lg-3 order-lg-2 order-1 mb-4 mb-lg-0">
+                    <div class="cart-items">
+                        <div class="cart-body">
+                            <h6>جزئیات قیمت (0 آیتم)</h6>
+                            <ul>
+                                <li>
+                                    <p>مجموع سبد</p><span>0 تومان</span>
+                                </li>
+                                <li>
+                                    <p>تخفیف کوپن</p><span class="Coupon">کوپن را اعمال کنید</span>
+                                </li>
+                                <li>
+                                    <p>ارسال</p><span>0 تومان</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="cart-bottom">
+                            <p><i class="iconsax me-1" data-icon="tag-2"><!-- SVG content --></i>پیشنهاد ویژه (0 تومان)</p>
+                            <h6>مجموع نهایی <span>0 تومان</span></h6>
+                            <span>مالیات و هزینه ارسال در هنگام چک‌اوت محاسبه می‌شود</span>
+                        </div>
+                        <div class="coupon-box">
+                            <h6>کوپن</h6>
+                            <ul>
+                                <li>
+                                    <span>
+                                        <input type="text" placeholder="کوپن را اعمال کنید">
+                                        <i class="iconsax me-1" data-icon="tag-2"><!-- SVG content --></i>
+                                    </span>
+                                    <button class="btn">اعمال</button>
+                                </li>
+                                <li>
+                                    <span><a class="theme-color" href="login.html">ورود</a> برای دیدن بهترین کوپن برای شما</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="btn btn_black w-100 rounded sm" id="checkoutButton">پرداخت نهایی</a>
+                    </div>
+                </div>
+
+                <!-- ستون اصلی (جدول محصولات) -->
+                <div class="col-lg-9 order-lg-1 order-2">
+                    <div class="cart-table">
+                        <div class="table-responsive theme-scrollbar">
+                            <table class="table" id="cart-table">
+                                <thead>
+                                    <tr>
+                                        <th>محصول</th>
+                                        <th>قیمت</th>
+                                        <th>تعداد</th>
+                                        <th>مجموع</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cart-items-body">
+                                    <!-- محصولات به‌صورت داینامیک اینجا اضافه می‌شوند -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="no-data" id="data-show">
+                            <img src="../assets/images/cart/1.gif" alt="">
+                            <h4>شما هیچ چیزی در سبد خرید خود ندارید!</h4>
+                            <p>امروز روز خوبی است برای خرید چیزهایی که به آنها نیاز دارید! یا <span>خرید را ادامه دهید</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</section>
+<div class="offcanvas offcanvas-end shopping-details" id="offcanvasRight" tabindex="-1" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+        <h4 class="offcanvas-title" id="offcanvasRightLabel">سبد خرید</h4>
+        <button class="btn-close" type="button" data-bs-dismiss="offcanvas" aria-label="بستن"></button>
+    </div>
+    <div class="offcanvas-body theme-scrollbar">
+        <ul class="offcanvas-cart">
+            <li>
+                <a href="#"> <img src="../assets/images/cart/1.jpg" alt="تصویر محصول"></a>
+                <div>
+                    <h6 class="mb-0">پیراهن مردانه</h6>
+                    <p>
+                        ۳۵ تومان <del>۴۰ تومان</del>
+                        <span class="btn-cart"> <span class="btn-cart__total" id="total">۱۰۵</span></span>
+                    </p>
+                    <div class="btn-containter">
+                        <div class="btn-control">
+                            <button class="btn-control__remove" id="btn-remove">&minus;</button>
+                            <div class="btn-control__quantity">
+                                <div id="quantity-previous">۲</div>
+                                <div id="quantity-current">۳</div>
+                                <div id="quantity-next">۴</div>
+                            </div>
+                            <button class="btn-control__add" id="btn-add">+</button>
+                        </div>
+                    </div>
+                </div>
+                <i class="iconsax delete-icon" data-icon="trash"></i>
+            </li>
+            <li>
+                <a href="#"> <img src="../assets/images/cart/2.jpg" alt="تصویر محصول"></a>
+                <div>
+                    <h6 class="mb-0">پیراهن مردانه</h6>
+                    <p>
+                        ۳۵ تومان <del>۴۰ تومان</del>
+                        <span class="btn-cart"> <span class="btn-cart__total" id="total1">۱۰۵</span></span>
+                    </p>
+                    <div class="btn-containter">
+                        <div class="btn-control">
+                            <button class="btn-control__remove" id="btn-remove1">&minus;</button>
+                            <div class="btn-control__quantity">
+                                <div id="quantity1-previous">۲</div>
+                                <div id="quantity1-current">۳</div>
+                                <div id="quantity1-next">۴</div>
+                            </div>
+                            <button class="btn-control__add" id="btn-add1">+</button>
+                        </div>
+                    </div>
+                </div>
+                <i class="iconsax delete-icon" data-icon="trash"></i>
+            </li>
+            <li>
+                <a href="#"> <img src="../assets/images/cart/3.jpg" alt="تصویر محصول"></a>
+                <div>
+                    <h6 class="mb-0">پیراهن مردانه</h6>
+                    <p>
+                        ۳۵ تومان <del>۴۰ تومان</del>
+                        <span class="btn-cart"> <span class="btn-cart__total" id="total2">۱۰۵</span></span>
+                    </p>
+                    <div class="btn-containter">
+                        <div class="btn-control">
+                            <button class="btn-control__remove" id="btn-remove2">&minus;</button>
+                            <div class="btn-control__quantity">
+                                <div id="quantity2-previous">۲</div>
+                                <div id="quantity2-current">۳</div>
+                                <div id="quantity2-next">۴</div>
+                            </div>
+                            <button class="btn-control__add" id="btn-add2">+</button>
+                        </div>
+                    </div>
+                </div>
+                <i class="iconsax delete-icon" data-icon="trash"></i>
+            </li>
+            <li>
+                <a href="#"> <img src="../assets/images/cart/4.jpg" alt="تصویر محصول"></a>
+                <div>
+                    <h6 class="mb-0">پیراهن مردانه</h6>
+                    <p>
+                        ۳۵ تومان <del>۴۰ تومان</del>
+                        <span class="btn-cart"> <span class="btn-cart__total" id="total3">۱۰۵</span></span>
+                    </p>
+                    <div class="btn-containter">
+                        <div class="btn-control">
+                            <button class="btn-control__remove" id="btn-remove3">&minus;</button>
+                            <div class="btn-control__quantity">
+                                <div id="quantity3-previous">۲</div>
+                                <div id="quantity3-current">۳</div>
+                                <div id="quantity3-next">۴</div>
+                            </div>
+                            <button class="btn-control__add" id="btn-add3">+</button>
+                        </div>
+                    </div>
+                </div>
+                <i class="iconsax delete-icon" data-icon="trash"></i>
+            </li>
+        </ul>
+    </div>
+    <div class="offcanvas-footer">
+        <p>برای بهره‌مندی از <span>ارسال رایگان!</span> تنها <span>۱۴.۸۱ تومان</span> بیشتر خرج کنید.</p>
+        <div class="footer-range-slider">
+            <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="46" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar progress-bar-striped progress-bar-animated theme-default" style="width: 46%"></div>
+            </div>
+        </div>
+        <div class="price-box">
+            <h6>مجموع :</h6>
+            <p>۴۹.۵۹ تومان</p>
+        </div>
+        <div class="cart-button">
+            <a class="btn btn_outline" href="cart.html">مشاهده سبد خرید</a>
+            <a class="btn btn_black" href="check-out.html">پرداخت</a>
+        </div>
+    </div>
+</div>
+
+<div class="modal theme-modal fade cart-modal" id="addtocart" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body modal1">
+                <div class="custom-container container">
+                    <div class="row">
+                        <div class="col-12 px-0">
+                            <div class="modal-bg addtocart">
+                                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="بستن"></button>
+                                <div class="d-flex">
+                                    <a href="#"><img class="img-fluid blur-up lazyload pro-img" src="../assets/images/modal/0.jpg" alt=""></a>
+                                    <div class="add-card-content align-self-center text-center">
+                                        <a href="#">
+                                            <h6><i class="fa-solid fa-check"> </i>آیتم <span>پیراهن آستین بلند مردانه</span><span> با موفقیت به سبد خرید شما اضافه شد</span></h6>
+                                        </a>
+                                        <div class="buttons"><a class="view-cart btn btn-solid" href="cart.html">سبد خرید شما</a><a class="checkout btn btn-solid" href="check-out.html">پرداخت</a><a class="continue btn btn-solid" href="index.html">ادامه خرید</a></div>
+                                        <div class="upsell_payment"><img class="img-fluid blur-up lazyload" src="../assets/images/payment_cart.png" alt=""></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="offcanvas offcanvas-top search-details" id="offcanvasTop" tabindex="-1" aria-labelledby="offcanvasTopLabel">
+    <div class="offcanvas-header"><button class="btn-close" type="button" data-bs-dismiss="offcanvas" aria-label="بستن"><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="offcanvas-body theme-scrollbar">
+        <div class="container">
+            <h3>دنبال چی میگردی؟</h3>
+            <div class="search-box"> <input type="search" name="text" placeholder="دنبال چی میگردم..."><i class="iconsax" data-icon="search-normal-2"></i></div>
+            <h4>جستجوهای محبوب</h4>
+            <ul class="rapid-search">
+                <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>شلوار جین زنانه</a></li>
+                <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>کت زنانه</a></li>
+                <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>شلوار جین مردانه</a></li>
+                <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>کت مردانه</a></li>
+                <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>تی شرت مردانه</a></li>
+                <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>کفش مردانه</a></li>
+                <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>تی شرت زنانه</a></li>
+                <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>کیف</a></li>
+                <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>کتانی زنانه</a></li>
+                <li> <a href="collection-left-sidebar.html"><i class="iconsax" data-icon="search-normal-2"></i>لباس</a></li>
+            </ul>
+            <h4>شاید دوست داشته باشید</h4>
+            <div class="row gy-4 ratio_square-2 preemptive-search">
+                <div class="col-xl-2 col-sm-4 col-6">
+                    <div class="product-box-6">
+                        <div class="img-wrapper">
+                            <div class="product-image"><a href="product.html"> <img class="bg-img" src="../assets/images/product/product-2/blazers/1.jpg" alt="محصول"></a></div>
+                        </div>
+                        <div class="product-detail">
+                            <div>
+                                <a href="product.html">
+                                    <h6>تاپ شیک زنانه</h6>
+                                </a>
+                                <p>تومان 50.00 </p>
+                                <ul class="rating">
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star-half-stroke"></i></li>
+                                    <li><i class="fa-regular fa-star"></i></li>
+                                    <li>4+</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-sm-4 col-6">
+                    <div class="product-box-6">
+                        <div class="img-wrapper">
+                            <div class="product-image"><a href="product.html"> <img class="bg-img" src="../assets/images/product/product-2/blazers/2.jpg" alt="محصول"></a></div>
+                        </div>
+                        <div class="product-detail">
+                            <div>
+                                <a href="product.html">
+                                    <h6>تاپ شیک زنانه</h6>
+                                </a>
+                                <p>تومان 95.00 <del>تومان 140.00</del></p>
+                                <ul class="rating">
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star-half-stroke"></i></li>
+                                    <li><i class="fa-regular fa-star"></i></li>
+                                    <li><i class="fa-regular fa-star"></i></li>
+                                    <li>3+</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-sm-4 col-6">
+                    <div class="product-box-6">
+                        <div class="img-wrapper">
+                            <div class="product-image"><a href="product.html"> <img class="bg-img" src="../assets/images/product/product-2/blazers/3.jpg" alt="محصول"></a></div>
+                        </div>
+                        <div class="product-detail">
+                            <div>
+                                <a href="product.html">
+                                    <h6>تاپ شیک زنانه</h6>
+                                </a>
+                                <p>تومان 80.00 <del>تومان 140.00</del></p>
+                                <ul class="rating">
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star-half-stroke"></i></li>
+                                    <li><i class="fa-regular fa-star"></i></li>
+                                    <li>4</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-sm-4 col-6">
+                    <div class="product-box-6">
+                        <div class="img-wrapper">
+                            <div class="product-image"><a href="product.html"> <img class="bg-img" src="../assets/images/product/product-2/blazers/4.jpg" alt="محصول"></a></div>
+                        </div>
+                        <div class="product-detail">
+                            <div>
+                                <a href="product.html">
+                                    <h6>تاپ شیک زنانه</h6>
+                                </a>
+                                <p>تومان 90.00 </p>
+                                <ul class="rating">
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star-half-stroke"></i></li>
+                                    <li><i class="fa-regular fa-star"></i></li>
+                                    <li>2+</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-sm-4 col-6">
+                    <div class="product-box-6">
+                        <div class="img-wrapper">
+                            <div class="product-image"><a href="product.html"> <img class="bg-img" src="../assets/images/product/product-2/blazers/5.jpg" alt="محصول"></a></div>
+                        </div>
+                        <div class="product-detail">
+                            <div>
+                                <a href="product.html">
+                                    <h6>تاپ شیک زنانه</h6>
+                                </a>
+                                <p>تومان 180.00 <del>تومان 140.00</del></p>
+                                <ul class="rating">
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star"></i></li>
+                                    <li><i class="fa-solid fa-star-half-stroke"></i></li>
+                                    <li><i class="fa-regular fa-star"></i></li>
+                                    <li>4+</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-sm-4 col-6">
+                    <div class="product-box-6">
+                        <div class="img-wrapper">
+                            <div class="product-image"><a href="product.html"> <img class="bg-img" src="../assets/images/product/product-2/blazers/6.jpg" alt="محصول"></a></div>
+                        </div>
+                        <div class="product-detail">
+                            <a href="product.html">
+                                <h6>تاپ شیک زنانه</h6>
+                            </a>
+                            <p>تومان 120.00 </p>
+                            <ul class="rating">
+                                <li><i class="fa-solid fa-star"></i></li>
+                                <li><i class="fa-solid fa-star"></i></li>
+                                <li><i class="fa-solid fa-star"></i></li>
+                                <li><i class="fa-solid fa-star-half-stroke"></i></li>
+                                <li><i class="fa-regular fa-star"></i></li>
+                                <li>4+</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/Cart/Cart.js"></script>
+}
+@{
+    var userId = User.FindFirst("UserId")?.Value ?? string.Empty;
+}
+
+<script type="text/javascript">
+    var userId = '@userId';
+    console.log(userId);  // در صورتی که UserId خالی نباشد، در کنسول چاپ می‌کند.
+</script>
+
