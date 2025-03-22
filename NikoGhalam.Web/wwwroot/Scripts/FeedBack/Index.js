@@ -114,8 +114,8 @@ function renderFeedBacks(feedBacks) {
                     <div>
                         <h5>${item.customerName}</h5>
                     </div>
-                    <img class="img-fluid" src="../assets/images/user/1.jpg" alt="">
-                    <button class="btn btn-danger btn-delete" data-id="${item.id}">حذف</button>
+                    <img class="img-fluid" src="/assets/images/user/Default.Webp" alt="">
+                      ${isAdmin ? `<button class="btn btn-danger btn-delete" data-id="${item.id}">حذف</button>` : ''}
                 </div>
             </div>
         `;

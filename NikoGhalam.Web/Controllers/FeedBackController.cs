@@ -22,6 +22,7 @@ namespace NikoGhalam.Web.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [Route("/FeedBack/GetFeedBacks")]
         public async Task<IActionResult> GetFeedBacks()

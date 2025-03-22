@@ -288,6 +288,59 @@ namespace YourNamespace.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("/Order/GetUserInvoices/{userId}")]
+        public async Task<IActionResult> GetUserInvoices(Guid userId)
+        {
+            // دریافت نقش کاربر
+            var user = await _context.Users.FindAsync(userId);
+            bool isAdmin = user?.Role == "Admin"; // فرض کنید نقش کاربر در فیلد Role ذخیره شده است
 
+            // دریافت فاکتورها بر اساس نقش کاربر
+            var invoicesQuery = _context.Invoices
+                .Include(i => i.Items)
+                .ThenInclude(item => item.Product)
+                .AsQueryable();
+
+            if (!isAdmin)
+            {
+                // اگر کاربر ادمین نباشد، فقط فاکتورهای خودش را دریافت می‌کند
+                invoicesQuery = invoicesQuery.Where(i => i.UserId == userId);
+            }
+            var invoices = await invoicesQuery
+                .Select(i => new
+                {
+                    i.Id,
+                    i.InvoiceNumber,
+                    Status = i.Status == InvoiceStatus.Unpaid ? "پرداخت نشده" :
+                             i.Status == InvoiceStatus.Paid ? "پرداخت شده" :
+                             i.Status == InvoiceStatus.Cancelled ? "کنسل شده" : "نامعلوم",
+                    i.IssueDate,
+                    i.TotalAmount,
+                    UserPhoneNumber = i.User.PhoneNumber, // اضافه کردن نام کاربر
+                    Items = i.Items.Select(item => new
+                    {
+                        item.ProductId,
+                        item.Quantity,
+                        item.Price,
+                        item.TotalAmount,
+                        ProductName = item.Product.Name,
+                        ProductImageUrl = item.Product.ImageUrl
+                    })
+                })
+                .ToListAsync();
+
+            if (!invoices.Any())
+            {
+
+                return Ok(new Result()
+                {
+                    IsSuccess = true,
+                    Message = "هیچ فاکتوری یافت نشد.",
+                });
+            }
+
+            return Ok(new { isSuccess = true, data = invoices });
+        }
     }
 }

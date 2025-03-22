@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NikoGhalam.Web.Context;
 
@@ -11,9 +12,11 @@ using NikoGhalam.Web.Context;
 namespace NikoGhalam.Web.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250318005846_add-product-to-invoiceitem")]
+    partial class addproducttoinvoiceitem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -237,7 +240,7 @@ namespace NikoGhalam.Web.Migrations
                             Id = new Guid("11111111-1111-1111-1111-111111111111"),
                             CreateDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "   با سلام و عرض ادب خدمت هنرجویان عزیز\r\n\r\n                                این برنامه طوری طراحی شده که بتوانید در هر مکان و هر زمانی به راحتی مهارت زیبانویسی خود را ارتقا دهید.\r\n\r\n                                این پک آموزشی شامل :\r\n\r\n                                نرم افزار\r\n                                بیش از ۲۰۰ فیلم آموزشی\r\n                                دفتر بارگذاری\r\n                                دفتر تمرین\r\n                                پشتیبانی\r\n\r\n                               طلایی : چت با پشتیبان + تماس روزانه + پشتیبانی ویژه ۵۹۸ تومان",
-                            ImageUrl = "/assets/images/product/Gold.Webp",
+                            ImageUrl = "/assets/images/product/Gold.Png",
                             IsDeleted = false,
                             Name = "پک طلایی",
                             Price = 598000m,
@@ -248,7 +251,7 @@ namespace NikoGhalam.Web.Migrations
                             Id = new Guid("22222222-2222-2222-2222-222222222222"),
                             CreateDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "   با سلام و عرض ادب خدمت هنرجویان عزیز\r\n\r\n                                این برنامه طوری طراحی شده که بتوانید در هر مکان و هر زمانی به راحتی مهارت زیبانویسی خود را ارتقا دهید.\r\n\r\n                                این پک آموزشی شامل :\r\n\r\n                                نرم افزار\r\n                                بیش از ۲۰۰ فیلم آموزشی\r\n                                دفتر بارگذاری\r\n                                دفتر تمرین\r\n                                پشتیبانی\r\n\r\n                                نقره ای : چت با پشتیبان + تماس هفتگی ۴۹۸ تومان",
-                            ImageUrl = "/assets/images/product/Silver.Webp",
+                            ImageUrl = "/assets/images/product/Silver.Png",
                             IsDeleted = false,
                             Name = "پک نقره ای",
                             Price = 498000m,
@@ -259,7 +262,7 @@ namespace NikoGhalam.Web.Migrations
                             Id = new Guid("33333333-3333-3333-3333-333333333333"),
                             CreateDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "   با سلام و عرض ادب خدمت هنرجویان عزیز\r\n\r\n                                این برنامه طوری طراحی شده که بتوانید در هر مکان و هر زمانی به راحتی مهارت زیبانویسی خود را ارتقا دهید.\r\n\r\n                                این پک آموزشی شامل :\r\n\r\n                                نرم افزار\r\n                                بیش از ۲۰۰ فیلم آموزشی\r\n                                دفتر بارگذاری\r\n                                دفتر تمرین\r\n                                پشتیبانی\r\n\r\n                                برنزی (اقتصادی) : چت با پشتیبان  ۳۹۸ تومان",
-                            ImageUrl = "/assets/images/product/Browns.Webp",
+                            ImageUrl = "/assets/images/product/Browns.Png",
                             IsDeleted = false,
                             Name = "پک برنزی",
                             Price = 398000m,

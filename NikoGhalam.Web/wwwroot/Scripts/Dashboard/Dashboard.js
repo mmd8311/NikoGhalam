@@ -1,11 +1,23 @@
 ﻿$(document).ready(() => {
     LoadProfileData();
     LoadUserAddresses();
+    loadUserInvoices(userId);
 
     $("#btn_submit").click(function () {
         SaveProfile();
     });
 
+    // نمایش منو
+    $("#btn-menu").click(function () {
+        $(".dashboard-left-sidebar").addClass("open");
+        $("body").addClass("no-scroll"); // جلوگیری از اسکرول صفحه
+    });
+
+    // بستن منو
+    $(".dashboard-left-sidebar-close").click(function () {
+        $(".dashboard-left-sidebar").removeClass("open");
+        $("body").removeClass("no-scroll"); // فعال کردن اسکرول صفحه
+    });
     $("#Address_submit").click(function () {
         SaveAddress();
     });
@@ -37,6 +49,98 @@
         return; // پایان تابع اگر userId وجود نداشته باشد
     }
 });
+
+function loadUserInvoices(userId) {
+    $.ajax({
+        type: "GET",
+        url: `/Order/GetUserInvoices/${userId}`,
+        success: function (response) {
+            if (response.isSuccess) {
+                renderInvoices(response.data); // ارسال response.data به تابع renderInvoices
+            } else {
+                toastr.error(response.message);
+            }
+        },
+        error: function () {
+            toastr.error("خطا در دریافت فاکتورها!");
+        }
+    });
+} function renderInvoices(invoices) {
+    const invoiceList = $("#invoice-list");
+    invoiceList.empty();
+
+    if (!invoices || !Array.isArray(invoices)) {
+        invoiceList.append('<div class="col-12 text-center">خطا در دریافت فاکتورها!</div>');
+        return;
+    }
+
+    if (invoices.length === 0) {
+        invoiceList.append('<div class="col-12 text-center">هیچ فاکتوری یافت نشد.</div>');
+        return;
+    }
+
+    invoices.forEach(invoice => {
+        if (!invoice.items || !Array.isArray(invoice.items)) {
+            console.error("Items is undefined or not an array for invoice:", invoice);
+            return;
+        }
+
+        let itemsHtml = '';
+        invoice.items.forEach(item => {
+            itemsHtml += `
+                <div class="product-box">
+                    <a href="/product/${item.productId}">
+                        <img src="${item.productImageUrl}" alt="${item.productName}">
+                    </a>
+                    <div class="order-wrap">
+                        <h5>${item.productName}</h5>
+                        <ul>
+                            <li>
+                                <p>قیمت : </p><span>${item.price.toLocaleString()} تومان</span>
+                            </li>
+                            <li>
+                                <p>تعداد : </p><span>${item.quantity}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+        });
+
+        let invoiceHtml = `
+            <div class="col-12">
+                <div class="order-box">
+                    <div class="order-container">
+                        <div class="order-icon">
+                            <i class="iconsax" data-icon="box"></i>
+                            <div class="couplet"><i class="fa-solid fa-check"></i></div>
+                        </div>
+                        <div class="order-detail">
+                            <h5>${invoice.status}</h5>
+                            <p>${new Date(invoice.issueDate).toLocaleDateString('fa-IR')}</p>
+                        </div>
+                    </div>
+                    <div class="product-order-detail">
+                        ${itemsHtml}
+                       <div class="order-summary">
+    <ul>
+        <li>
+            <p>شناسه فاکتور :</p><span>${invoice.invoiceNumber}</span>
+        </li>
+        <li>
+            <p>مبلغ کل :</p><span>${invoice.totalAmount.toLocaleString()} تومان</span>
+        </li>
+        ${isAdmin ? `<li><p>کاربر :</p><span>${invoice.userPhoneNumber}</span></li>` : ''}
+    </ul>
+</div>
+                    </div>
+                </div>
+            </div>
+        `;
+        invoiceList.append(invoiceHtml);
+    });
+}
+
 function SaveProfile() {
     if (ValidateProfile()) {
         $("#btn_submit").prop("disabled", true).css("opacity", "0.3");
@@ -283,7 +387,7 @@ function DeleteAddress(addressId) {
             }
         },
         error: function () {
-       
+
             toastr.error("خطا در حذف آدرس!");
         }
     });

@@ -23,7 +23,9 @@ namespace NikoGhalam.Web.Controllers
         public IActionResult Index()
         {
             return View();
+
         }
+
         [HttpPost]
         [Route("/Dashboard/Upsert")]
         public async Task<IActionResult> Upsert([FromBody] UserDashboard entityDto)

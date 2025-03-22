@@ -9,12 +9,6 @@
                 <div class="col-sm-6">
                     <h4>درباره ما </h4>
                 </div>
-                <div class="col-sm-6">
-                    <ul class="breadcrumb float-end">
-                        <li class="breadcrumb-item"> <a href="Home/Index">خانه </a></li>
-                        <li class="breadcrumb-item active"> <a href="/AboutUs/Index">درباره ما </a></li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
@@ -24,9 +18,9 @@
         <div class="row align-items-center gy-4">
             <div class="col-lg-6 order-1 order-lg-1 ratio_55">
                 <div class="about-img">
-                    <img class="bg-img img-fluid" src="/assets/images/about/11.jpg" alt="">
+                    <img class="bg-img img-fluid" loading="lazy" src="/assets/images/about/11_14_11zon.webp" alt="">
                     <div class="about-tag">
-                        <a href="collection-left-sidebar.html">
+                        <a href="">
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
@@ -90,9 +84,12 @@
                 <div class="title-1">
                     <p>نظرات جدیدترین<span></span></p>
                     <h3>بازخورد مشتریان ما</h3>
+                     @if (User.IsInRole("Admin"))
+                     {
                     <li>
                         <a class="nav-link" data-bs-toggle="modal" data-bs-target="#addfeedback">افزودن بازخورد</a>
                     </li>
+                     }
                 </div>
             </div>
             <div id="feedbacks-list" class="col-12">
@@ -130,3 +127,6 @@
 @section Scripts {
     <script type="text/javascript" src="/Scripts/FeedBack/Index.js"></script>
 }
+<script>
+    var isAdmin = @User.IsInRole("Admin").ToString().ToLower();
+</script>

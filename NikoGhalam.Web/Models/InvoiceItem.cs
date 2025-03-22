@@ -6,6 +6,7 @@ namespace NikoGhalam.Web.Models
     public class InvoiceItem : BaseEntity
     {
         public Guid ProductId { get; set; } // شناسه محصول
+        public Product Product { get; set; }
         public int Quantity { get; set; } // تعداد
         public decimal Price { get; set; } // قیمت یک واحد
         public decimal TotalAmount { get; set; } // مبلغ کل این آیتم (قیمت * تعداد)

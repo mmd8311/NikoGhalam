@@ -1,4 +1,4 @@
-﻿$(document).ready((doc) => {
+﻿$(document).ready(function () {
     $("#btn_getCode").click(function () {
         getOtpCode();
     });
@@ -31,6 +31,7 @@ function getOtpCode() {
                 $("#otp-box").fadeIn();
                 $("#btn_getCode").hide();
                 $("#btn_signIn").show();
+                $("#btn_newGetCode").hide(); // مخفی کردن دکمه ارسال مجدد کد
             } else {
                 toastr.error(data.message);
             }
@@ -62,8 +63,8 @@ function signIn() {
             } else {
                 toastr.error(data.message);
                 if (data.data == -1) {
-                    $("#btn_newGetCode").show();
-                    $("#btn_signIn").hide();
+                    $("#btn_newGetCode").show(); // نمایش دکمه ارسال مجدد کد
+                    //$("#btn_signIn").hide(); // مخفی کردن دکمه ورود
                 }
             }
             $("#btn_signIn").prop("disabled", false);

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NikoGhalam.Web.Context;
 using NikoGhalam.Web.Models;
 using System.Diagnostics;
@@ -15,6 +16,7 @@ namespace NikoGhalam.Web.Controllers
             _context = context;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();

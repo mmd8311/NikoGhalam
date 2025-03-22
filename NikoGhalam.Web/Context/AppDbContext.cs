@@ -42,7 +42,7 @@ namespace NikoGhalam.Web.Context
         Price = 598000,
         CreateDate = new DateTime(2024, 1, 1),
         UpdateDate = new DateTime(2024, 1, 1),
-        ImageUrl = "/assets/images/product/Gold.Png"
+        ImageUrl = "/assets/images/product/Gold.Webp"
     },
     new Product
     {
@@ -52,7 +52,7 @@ namespace NikoGhalam.Web.Context
         Price = 498000,
         CreateDate = new DateTime(2024, 1, 1),
         UpdateDate = new DateTime(2024, 1, 1),
-        ImageUrl = "/assets/images/product/Silver.Png"
+        ImageUrl = "/assets/images/product/Silver.Webp"
 
     },
         new Product
@@ -63,9 +63,9 @@ namespace NikoGhalam.Web.Context
         Price = 398000,
         CreateDate = new DateTime(2024, 1, 1),
         UpdateDate = new DateTime(2024, 1, 1),
-        ImageUrl = "/assets/images/product/Browns.Png"
+        ImageUrl = "/assets/images/product/Browns.Webp"
 
-    }
+        }
 );
         }
     }

@@ -1,6 +1,5 @@
 ﻿@model List<Product>
-
-<section class="pt-0 home-section-3">
+  <section class="pt-0 home-section-3">
     <div class="container-fluid">
         <div class="row align-items-center">
             <div class="col pe-0">
@@ -17,7 +16,7 @@
                             </div>
                         </div>
                     </div>
-                    <img style="transform: scaleX(-1);" class="img-fluid" src="/assets/images//layout-3/2.jpg" alt="بنر خانه">
+                    <img style="transform: scaleX(-1);" loading="lazy" class="img-fluid" src="/assets/images/layout-3/2_2_11zon.webp" alt="بنر خانه">
                 </div>
                 <ul class="social-icon">
                     <li>
@@ -26,12 +25,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.instagram.com/" target="_blank">
+                        <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
                             <i class="fa-brands fa-instagram"></i>
                         </a>
                     </li>
                  @*    <li>
-                        <a href="https://www.facebook.com/" target="_blank">
+                        <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
                             <svg>
                                 <img src="/assets/images/svg-icon/eitaa.svg" alt="" style="width:15px">
                             </svg>
@@ -49,12 +48,6 @@
             <div class="row align-items-center">
                 <div class="col-sm-6">
                     <h4>محصول</h4>
-                </div>
-                <div class="col-sm-6">
-                    <ul class="breadcrumb float-end">
-                        <li class="breadcrumb-item"> <a href="index.html">خانه</a></li>
-                        <li class="breadcrumb-item active"> <a href="#">محصول</a></li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -74,7 +67,7 @@
                                     @if (!string.IsNullOrEmpty(product.ImageUrl))
                                     {
                                         <div class="swiper-slide">
-                                            <img src="@product.ImageUrl" alt="" class="product-image"
+                                            <img loading="lazy" src="@product.ImageUrl" alt="" class="product-image"
                                                  data-id="@product.Id"
                                                  data-name="@product.Name"
                                                  data-description="@product.Description"
@@ -91,8 +84,8 @@
                         <div class="swiper product-slider-thumb product-slider-img-1 p-2 bg-white rounded-xl shadow-sm">
                             <div class="swiper-wrapper ratio_square-2">
                                 <div class="swiper-slide">
-                                    <img class="bg-img rounded-lg shadow-sm border border-gray-100 transition-all hover:shadow-md"
-                                         src="/assets/images/product/slider/cover.jpg"
+                                    <img loading="lazy" class="bg-img rounded-lg shadow-sm border border-gray-100 transition-all hover:shadow-md"
+                                         src="/assets/images/product/cover_11zon.webp"
                                          alt="جلد">
                                 </div>
                             </div>
@@ -115,11 +108,7 @@
                                    href="#"
                                    data-bs-toggle="offcanvas"
                                    data-bs-target="#offcanvasRight"
-                                   aria-controls="offcanvasRight"
-                                   data-id="@Model.First().Id"
-                                   data-name="@Model.First().Name"
-                                   data-price="@Model.First().Price"
-                                   data-image="@Model.First().ImageUrl">افزودن به سبد خرید</a>
+                                   aria-controls="offcanvasRight">افزودن به سبد خرید</a>
                             </div>
                         </div>
                     </div>
@@ -157,7 +146,7 @@
         <ul>
             <li>
                 <div class="service-block">
-                    <img src="../assets/images/svg-icon/1.svg" alt="">
+                    <img loading="lazy" src="../assets/images/svg-icon/1.svg" alt="">
                     <div>
                         <h6>حمل و نقل در سراسر ایران</h6>
                     </div>
@@ -165,7 +154,7 @@
             </li>
             <li>
                 <div class="service-block">
-                    <img src="../assets/images/svg-icon/2.svg" alt="">
+                    <img loading="lazy" src="../assets/images/svg-icon/2.svg" alt="">
                     <div>
                         <h6>برگشت و تعویض</h6>
                     </div>
@@ -173,7 +162,7 @@
             </li>
             <li>
                 <div class="service-block">
-                    <img src="../assets/images/svg-icon/3.svg" alt="">
+                    <img loading="lazy" src="../assets/images/svg-icon/3.svg" alt="">
                     <div>
                         <h6>پشتیبانی فنی</h6>
                         <p>پشتیبانی 24/7</p>
@@ -193,17 +182,17 @@
                 <div class="row gy-4 ratio_45">
                     <div class="col-md-4">
                         <div class="collection-banner">
-                            <img class="img-fluid" src="/assets/images/banner/IMG_20250310_220342_742.jpg" alt="عکس نمایشگاه 1">
+                            <img loading="lazy" class="img-fluid" src="/assets/images/banner/IMG_20250310_220342_742_11_11zon.webp" alt="عکس نمایشگاه 1">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="collection-banner">
-                            <img class="img-fluid" src="/assets/images/banner/IMG_20250310_220342_980.jpg" alt="عکس نمایشگاه 2">
+                            <img loading="lazy" class="img-fluid" src="/assets/images/banner/IMG_20250310_220342_980_12_11zon.webp" alt="عکس نمایشگاه 2">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="collection-banner">
-                            <img class="img-fluid" src="/assets/images/banner/IMG_20250310_220343_093.jpg" alt="عکس نمایشگاه 3">
+                            <img loading="lazy" class="img-fluid" src="/assets/images/banner/IMG_20250310_220343_093_13_11zon.webp" alt="عکس نمایشگاه 3">
                         </div>
                     </div>
                 </div>
@@ -285,8 +274,39 @@
     </div>
 </section> *@
 
-
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const addToCartButton = document.querySelector('.add-to-cart');
+        if (addToCartButton) {
+            const id = "@Model.First().Id";
+            addToCartButton.dataset.id = id;
+            addToCartButton.dataset.name = "@Model.First().Name";
+            addToCartButton.dataset.price = "@Model.First().Price";
+            
+            // استفاده از تصویر اصلی محصول به جای مقدار ثابت
+            const firstProductImage = document.querySelector('.product-image');
+            if (firstProductImage && firstProductImage.src) {
+                addToCartButton.dataset.image = firstProductImage.src;
+            } else {
+                const mainImage = document.querySelector('.product-slider-thumb img.bg-img');
+                if (mainImage && mainImage.src) {
+                    addToCartButton.dataset.image = mainImage.src;
+                } else {
+                    addToCartButton.dataset.image = "@Model.First().ImageUrl";
+                }
+            }
+            
+            console.log("تنظیم اطلاعات دکمه افزودن به سبد خرید:", {
+                id: addToCartButton.dataset.id,
+                name: addToCartButton.dataset.name,
+                price: addToCartButton.dataset.price,
+                image: addToCartButton.dataset.image
+            });
+        }
+    });
+</script>
 
 @section Scripts {
     <script type="text/javascript" src="/Scripts/Home/Index.js"></script>
 }
+

@@ -8,12 +8,6 @@
                 <div class="col-sm-6">
                     <h4>داشبورد</h4>
                 </div>
-                <div class="col-sm-6">
-                    <ul class="breadcrumb float-end">
-                        <li class="breadcrumb-item"> <a href="index.html">خانه</a></li>
-                        <li class="breadcrumb-item active"> <a href="#">داشبورد</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
@@ -22,13 +16,17 @@
     <div class="custom-container container user-dashboard-section">
         <div class="row">
             <div class="col-xl-3 col-lg-4">
-                <div class="left-dashboard-show"><button class="btn btn_black sm rounded bg-primary">نمایش منو</button></div>
+                <div class="left-dashboard-show"><button id="btn-menu" class="btn btn_black sm rounded bg-primary">نمایش منو</button></div>
                 <div class="dashboard-left-sidebar sticky">
                     <div class="profile-box">
                         <div class="profile-bg-img"></div>
                         <div class="dashboard-left-sidebar-close"><i class="fa-solid fa-xmark"></i></div>
                         <div class="profile-contain">
-                            <div class="profile-image"> <img class="" src="" alt=""></div>
+                            <div class="profile-image">
+                                <svg width="150" height="150" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 5C13.66 5 15 6.34 15 8C15 9.66 13.66 11 12 11C10.34 11 9 9.66 9 8C9 6.34 10.34 5 12 5ZM12 19.2C9.5 19.2 7.29 17.92 6 15.98C6.03 13.99 10 12.9 12 12.9C13.99 12.9 17.97 13.99 18 15.98C16.71 17.92 14.5 19.2 12 19.2Z" fill="#ccc" />
+                                </svg>
+                            </div>
                             <div class="profile-name">
                                 <h4></h4>
                                 <h6></h6><span data-bs-toggle="modal" data-bs-target="#add-dashboard" title="نمایش سریع" tabindex="0">ویرایش پروفایل</span>
@@ -37,7 +35,7 @@
                     </div>
                     <ul class="nav flex-column nav-pills dashboard-tab" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <li><button class="nav-link active" id="dashboard-tab" data-bs-toggle="pill" data-bs-target="#dashboard" role="tab" aria-controls="dashboard" aria-selected="true"><i class="iconsax" data-icon="home-1"></i> داشبورد</button></li>
-                        <li><button class="nav-link" id="order-tab" data-bs-toggle="pill" data-bs-target="#order" role="tab" aria-controls="order" aria-selected="false"><i class="iconsax" data-icon="receipt-square"></i> سفارشات</button></li>
+                        <li><button class="nav-link" id="order-tab" data-bs-toggle="pill" data-bs-target="#order" role="tab" aria-controls="order" aria-selected="false"><i class="iconsax" data-icon="receipt-square"></i>فاکتور ها</button></li>
                         <li><button class="nav-link" id="address-tab" data-bs-toggle="pill" data-bs-target="#address" role="tab" aria-controls="address" aria-selected="false"><i class="iconsax" data-icon="cue-cards"></i>آدرس‌ها</button></li>
                     </ul>
                     <div class="logout-button"> <a class="btn btn_black sm" data-bs-toggle="modal" data-bs-target="#Confirmation-modal" title="نمایش سریع" tabindex="0" ><i class="iconsax me-1" style="transform: rotate(180deg);" data-icon="logout-1"></i> خروج </a></div>
@@ -70,7 +68,7 @@
                                                     <p></p>
                                                 </li>
                                                 <li>
-                                                    <h6>تلفن:</h6>
+                                                    <h6 class="justnumber">تلفن:</h6>
                                                     <p></p>
                                                 </li>
                                                 <li>
@@ -80,7 +78,7 @@
                                             </ul>
                                         </div>
                                         <div class="col-xl-5">
-                                            <div class="profile-image d-none d-xl-block"> <img class="img-fluid" src="../assets/images/other-img/dashboard.png" alt=""></div>
+                                            <div class="profile-image d-none d-xl-block"> <img class="img-fluid" loading="lazy" src="/assets/images/other-img/dashboard_11zon.webp" alt=""></div>
                                         </div>
                                     </div>
                                 </div>
@@ -92,178 +90,10 @@
                             <div class="order">
                                 <div class="sidebar-title">
                                     <div class="loader-line"></div>
-                                    <h4>تاریخچه سفارشات من</h4>
+                                    <h4>فاکتور ها</h4>
                                 </div>
-                                <div class="row gy-4">
-                                    <div class="col-12">
-                                        <div class="order-box">
-                                            <div class="order-container">
-                                                <div class="order-icon">
-                                                    <i class="iconsax" data-icon="box"></i>
-                                                    <div class="couplet"><i class="fa-solid fa-check"></i></div>
-                                                </div>
-                                                <div class="order-detail">
-                                                    <h5>تحویل داده شد</h5>
-                                                    <p>در جمعه، ۱ مارس</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-order-detail">
-                                                <div class="product-box">
-                                                    <a href="product.html"> <img src="../assets/images/notification/1.jpg" alt=""></a>
-                                                    <div class="order-wrap">
-                                                        <h5>پیراهن کوتاه روستیک با یقه هالتر</h5>
-                                                        <p>شعارهای ورزشی چند منظوره آستین کوتاه، هودی‌های نارنجی لوکس، جلیقه‌ها، سنجاق‌ها و نشان‌ها.</p>
-                                                        <ul>
-                                                            <li>
-                                                                <p>قیمت : </p><span>$20.00</span>
-                                                            </li>
-                                                            <li>
-                                                                <p>سایز : </p><span>M</span>
-                                                            </li>
-                                                            <li>
-                                                                <p>شناسه سفارش :</p><span>ghat56han50</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="return-box">
-                                                <div class="review-box">
-                                                    <ul class="rating">
-                                                        <li> <i class="fa-solid fa-star"> </i><i class="fa-solid fa-star"> </i><i class="fa-solid fa-star"> </i><i class="fa-solid fa-star-half-stroke"></i><i class="fa-regular fa-star"></i></li>
-                                                    </ul><span data-bs-toggle="modal" data-bs-target="#Reviews-modal" title="مشاهده سریع" tabindex="0">نوشتن نظر</span>
-                                                </div>
-                                                <h6> <span> </span>* مهلت تعویض/بازگشت در ۲۰ مارس بسته شد</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="order-box">
-                                            <div class="order-container">
-                                                <div class="order-icon">
-                                                    <i class="iconsax" data-icon="undo"></i>
-                                                    <div class="couplet"><i class="fa-solid fa-check"></i></div>
-                                                </div>
-                                                <div class="order-detail">
-                                                    <h5>بازپرداخت اعتبار داده شد</h5>
-                                                    <p> بازپرداخت شما به مبلغ <b> $389.00 </b>برای بازگشت با موفقیت در ۴ آوریل پردازش شد.<a href="#"> مشاهده جزئیات بازپرداخت</a></p>
-                                                </div>
-                                            </div>
-                                            <div class="product-order-detail">
-                                                <div class="product-box">
-                                                    <a href="product.html"> <img src="../assets/images/notification/9.jpg" alt=""></a>
-                                                    <div class="order-wrap">
-                                                        <h5>پیراهن کوتاه روستیک با یقه هالتر</h5>
-                                                        <p>شعارهای ورزشی چند منظوره آستین کوتاه، هودی‌های نارنجی لوکس، جلیقه‌ها، سنجاق‌ها و نشان‌ها.</p>
-                                                        <ul>
-                                                            <li>
-                                                                <p>قیمت : </p><span>$20.00</span>
-                                                            </li>
-                                                            <li>
-                                                                <p>سایز : </p><span>M</span>
-                                                            </li>
-                                                            <li>
-                                                                <p>شناسه سفارش :</p><span>ghat56han50</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="return-box">
-                                                <div class="review-box">
-                                                    <ul class="rating">
-                                                        <li> <i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></li>
-                                                    </ul>
-                                                </div>
-                                                <h6> * مهلت تعویض/بازگشت در ۲۰ مارس بسته شد</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="order-box">
-                                            <div class="order-container">
-                                                <div class="order-icon">
-                                                    <i class="iconsax" data-icon="box"></i>
-                                                    <div class="couplet"><i class="fa-solid fa-check"></i></div>
-                                                </div>
-                                                <div class="order-detail">
-                                                    <h5>تحویل داده شد</h5>
-                                                    <p>در جمعه، ۱ مارس</p>
-                                                </div>
-                                            </div>
-                                            <div class="product-order-detail">
-                                                <div class="product-box">
-                                                    <a href="product.html"> <img src="../assets/images/notification/2.jpg" alt=""></a>
-                                                    <div class="order-wrap">
-                                                        <h5>پیراهن کوتاه روستیک با یقه هالتر</h5>
-                                                        <p>شعارهای ورزشی چند منظوره آستین کوتاه، هودی‌های نارنجی لوکس، جلیقه‌ها، سنجاق‌ها و نشان‌ها.</p>
-                                                        <ul>
-                                                            <li>
-                                                                <p>قیمت : </p><span>$20.00</span>
-                                                            </li>
-                                                            <li>
-                                                                <p>سایز : </p><span>M</span>
-                                                            </li>
-                                                            <li>
-                                                                <p>شناسه سفارش :</p><span>ghat56han50</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="return-box">
-                                                <div class="review-box">
-                                                    <ul class="rating">
-                                                        <li> <i class="fa-solid fa-star"> </i><i class="fa-solid fa-star"> </i><i class="fa-solid fa-star"> </i><i class="fa-solid fa-star-half-stroke"></i><i class="fa-regular fa-star"></i></li>
-                                                    </ul><span data-bs-toggle="modal" data-bs-target="#Reviews-modal" title="مشاهده سریع" tabindex="0">نوشتن نظر</span>
-                                                </div>
-                                                <h6> * مهلت تعویض/بازگشت در ۲۰ مارس بسته شد</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="order-box">
-                                            <div class="order-container">
-                                                <div class="order-icon">
-                                                    <i class="iconsax" data-icon="box-add"></i>
-                                                    <div class="couplet"><i class="fa-solid fa-xmark"></i></div>
-                                                </div>
-                                                <div class="order-detail">
-                                                    <h5>لغو شد</h5>
-                                                    <p>در جمعه، ۱ مارس</p>
-                                                    <h6> <b>بازپرداخت آغاز شد : </b>$774.00 در پنج‌شنبه، ۲۴ فوریه ۲۰۲۴. <a href="#"> مشاهده جزئیات بازپرداخت</a></h6>
-                                                </div>
-                                            </div>
-                                            <div class="product-order-detail">
-                                                <div class="product-box">
-                                                    <a href="product.html"> <img src="../assets/images/notification/6.jpg" alt=""></a>
-                                                    <div class="order-wrap">
-                                                        <h5>پیراهن کوتاه روستیک با یقه هالتر</h5>
-                                                        <p>شعارهای ورزشی چند منظوره آستین کوتاه، هودی‌های نارنجی لوکس، جلیقه‌ها، سنجاق‌ها و نشان‌ها.</p>
-                                                        <ul>
-                                                            <li>
-                                                                <p>قیمت : </p><span>$20.00</span>
-                                                            </li>
-                                                            <li>
-                                                                <p>سایز : </p><span>M</span>
-                                                            </li>
-                                                            <li>
-                                                                <p>شناسه سفارش :</p><span>ghat56han50</span>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="return-box">
-                                                <div class="review-box">
-                                                    <ul class="rating">
-                                                        <li> <i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i></li>
-                                                    </ul>
-                                                </div>
-                                                <h6> * مهلت تعویض/بازگشت در ۲۰ مارس بسته شد</h6>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="row gy-4" id="invoice-list">
+                                    <!-- فاکتورها به صورت داینامیک در این بخش نمایش داده می‌شوند -->
                                 </div>
                             </div>
                         </div>
@@ -294,14 +124,14 @@
                                                         </span>
                                                         <span class="address">
                                                             <span class="address-home">
-                                                                <span class="address-tag">
+                                                                <span class="address-tag justnumber">
                                                                     کد پستی:
                                                                 </span>
                                                             </span>
                                                         </span>
                                                         <span class="address">
                                                             <span class="address-home">
-                                                                <span class="address-tag">
+                                                                <span class="address-tag justnumber">
                                                                     تلفن :
                                                                 </span>
                                                             </span>
@@ -324,96 +154,6 @@
         </div>
     </div>
 </section>
-<div class="offcanvas offcanvas-end shopping-details" id="offcanvasRight" tabindex="-1" aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header">
-        <h4 class="offcanvas-title" id="offcanvasRightLabel">سبد خرید</h4><button class="btn-close" type="button" data-bs-dismiss="offcanvas" aria-label="بستن"></button>
-    </div>
-    <div class="offcanvas-body theme-scrollbar">
-        <ul class="offcanvas-cart">
-            <li>
-                <a href="#"> <img src="../assets/images/cart/1.jpg" alt=""></a>
-                <div>
-                    <h6 class="mb-0">پیراهن مردانه</h6>
-                    <p>۳۵ تومان<del>۴۰ تومان</del><span class="btn-cart">$<span class="btn-cart__total" id="total">۱۰۵</span></span></p>
-                    <div class="btn-containter">
-                        <div class="btn-control">
-                            <button class="btn-control__remove" id="btn-remove">&minus;</button>
-                            <div class="btn-control__quantity">
-                                <div id="quantity-previous">۲</div>
-                                <div id="quantity-current">۳</div>
-                                <div id="quantity-next">۴</div>
-                            </div><button class="btn-control__add" id="btn-add">+</button>
-                        </div>
-                    </div>
-                </div><i class="iconsax delete-icon" data-icon="trash"></i>
-            </li>
-            <li>
-                <a href="#"> <img src="../assets/images/cart/2.jpg" alt=""></a>
-                <div>
-                    <h6 class="mb-0">پیراهن مردانه</h6>
-                    <p>۳۵ تومان<del>۴۰ تومان</del><span class="btn-cart">$<span class="btn-cart__total" id="total1">۱۰۵</span></span></p>
-                    <div class="btn-containter">
-                        <div class="btn-control">
-                            <button class="btn-control__remove" id="btn-remove1">&minus;</button>
-                            <div class="btn-control__quantity">
-                                <div id="quantity1-previous">۲</div>
-                                <div id="quantity1-current">۳</div>
-                                <div id="quantity1-next">۴</div>
-                            </div><button class="btn-control__add" id="btn-add1">+</button>
-                        </div>
-                    </div>
-                </div><i class="iconsax delete-icon" data-icon="trash"></i>
-            </li>
-            <li>
-                <a href="#"> <img src="../assets/images/cart/3.jpg" alt=""></a>
-                <div>
-                    <h6 class="mb-0">پیراهن مردانه</h6>
-                    <p>۳۵ تومان<del>۴۰ تومان</del><span class="btn-cart">$<span class="btn-cart__total" id="total2">۱۰۵</span></span></p>
-                    <div class="btn-containter">
-                        <div class="btn-control">
-                            <button class="btn-control__remove" id="btn-remove2">&minus;</button>
-                            <div class="btn-control__quantity">
-                                <div id="quantity2-previous">۲</div>
-                                <div id="quantity2-current">۳</div>
-                                <div id="quantity2-next">۴</div>
-                            </div><button class="btn-control__add" id="btn-add2">+</button>
-                        </div>
-                    </div>
-                </div><i class="iconsax delete-icon" data-icon="trash"></i>
-            </li>
-            <li>
-                <a href="#"> <img src="../assets/images/cart/4.jpg" alt=""></a>
-                <div>
-                    <h6 class="mb-0">پیراهن مردانه</h6>
-                    <p>۳۵ تومان<del>۴۰ تومان</del><span class="btn-cart">$<span class="btn-cart__total" id="total3">۱۰۵</span></span></p>
-                    <div class="btn-containter">
-                        <div class="btn-control">
-                            <button class="btn-control__remove" id="btn-remove3">&minus;</button>
-                            <div class="btn-control__quantity">
-                                <div id="quantity3-previous">۲</div>
-                                <div id="quantity3-current">۳</div>
-                                <div id="quantity3-next">۴</div>
-                            </div><button class="btn-control__add" id="btn-add3">+</button>
-                        </div>
-                    </div>
-                </div><i class="iconsax delete-icon" data-icon="trash"></i>
-            </li>
-        </ul>
-    </div>
-    <div class="offcanvas-footer">
-        <p>بیشتر <span>$ 14.81 </span>خرج کنید و از <span>ارسال رایگان</span> لذت ببرید!</p>
-        <div class="footer-range-slider">
-            <div class="progress" role="progressbar" aria-label="مثال نوار پیشرفت متحرک" aria-valuenow="46" aria-valuemin="0" aria-valuemax="100">
-                <div class="progress-bar progress-bar-striped progress-bar-animated theme-default" style="width: 46%"></div>
-            </div>
-        </div>
-        <div class="price-box">
-            <h6>مجموع :</h6>
-            <p>$ 49.59 USD</p>
-        </div>
-        <div class="cart-button"> <a class="btn btn_outline" href="cart.html"> مشاهده سبد خرید</a><a class="btn btn_black" href="check-out.html"> پرداخت</a></div>
-    </div>
-</div>
 <div class="reviews-modal modal theme-modal fade" id="add-dashboard" tabindex="-1" role="dialog" aria-modal="true">
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -449,16 +189,16 @@
                         <div class="from-group"> <label class="form-label">عنوان</label><input class="form-control" id="Address_Title" type="text" name="" placeholder="عنوان آدرس را وارد کنید."></div>
                     </div>
                     <div class="col-6">
-                        <div class="from-group"> <label class="form-label">کد پستی</label><input class="form-control" id="PostalCode" type="text" name="" placeholder="کد پستی خود را وارد کنید."></div>
+                        <div class="from-group"> <label class="form-label">کد پستی</label><input class="form-control justnumber" id="PostalCode" type="text" name="" placeholder="کد پستی خود را وارد کنید."></div>
                     </div>
                     <div class="col-6">
                         <div class="from-group"> <label class="form-label">استان</label><input id="Province" class="form-control" type="text" placeholder="استان خود را وارد کنید."></div>
                     </div>    
                     <div class="col-6">
-                        <div class="from-group"> <label class="form-label">شهر</label><input id="City" class="form-control" type="text" placeholder="شهر خود را وارد کنید."></div>
+                        <div class="from-group"> <label class="form-label">شهر</label><input id="City" class="form-control justnumber" type="text" placeholder="شهر خود را وارد کنید."></div>
                     </div>
                     <div class="col-6">
-                        <div class="from-group"> <label class="form-label">تلفن</label><input id="PhoneNumber" class="form-control" type="number" name="" placeholder="تلفن خود را وارد کنید."></div>
+                        <div class="from-group"> <label class="form-label">تلفن</label><input id="PhoneNumber" class="form-control justnumber" type="number" name="" placeholder="تلفن خود را وارد کنید."></div>
                     </div>
                     <div class="col-12">
                         <div class="from-group"> <label class="form-label">آدرس</label><textarea id="AddressText" class="form-control" cols="30" rows="5" placeholder="آدرس خود را بنویسید..."></textarea></div>
@@ -472,7 +212,7 @@
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <img class="img-fluid" src="../assets/images/gif/question.gif" alt="">
+                <img class="img-fluid" loading="lazy" src="../assets/images/gif/question.gif" alt="">
                 <h4>تایید</h4>
                 <p>آیا مطمئن هستید که می خواهید ادامه دهید؟</p>
                 <div class="submit-button"> <button class="btn" type="submit" data-bs-dismiss="modal" aria-label="بستن">خیر</button><a id="btn_logout" class="btn">بله</a></div>
@@ -484,7 +224,7 @@
     <div class="modal-dialog modal-md modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <img class="img-fluid" src="../assets/images/gif/question.gif" alt="">
+                <img class="img-fluid" loading="lazy" src="../assets/images/gif/question.gif" alt="">
                 <h4>آیا مطمئن هستید؟</h4>
                 <p>این شیء مجوز جدیدی برای این شیء ایجاد می کند و مجوز استفاده/گروه را به ارث می برد، پیش نمایش.</p>
                 <div class="submit-button"> <button class="btn" type="submit" data-bs-dismiss="modal" aria-label="بستن">خیر</button><button class="btn" type="submit" data-bs-dismiss="modal" aria-label="بستن">بله</button></div>
@@ -511,7 +251,7 @@
                     <div class="col-6">
                         <div class="from-group">
                             <label class="form-label">کد پستی</label>
-                            <input class="form-control" id="Edit_PostalCode" type="text" placeholder="کد پستی خود را وارد کنید.">
+                            <input class="form-control justnumber" id="Edit_PostalCode" type="text" placeholder="کد پستی خود را وارد کنید.">
                         </div>
                     </div>
                     <div class="col-6">
@@ -529,7 +269,7 @@
                     <div class="col-6">
                         <div class="from-group">
                             <label class="form-label">تلفن</label>
-                            <input id="Edit_PhoneNumber" class="form-control" type="number" placeholder="تلفن خود را وارد کنید.">
+                            <input id="Edit_PhoneNumber justnumber" class="form-control" type="number" placeholder="تلفن خود را وارد کنید.">
                         </div>
                     </div>
                     <div class="col-12">
@@ -557,4 +297,8 @@
 <script type="text/javascript">
     var userId = '@userId';
     console.log(userId);  // در صورتی که UserId خالی نباشد، در کنسول چاپ می‌کند.
+</script>
+
+<script>
+    var isAdmin = @User.IsInRole("Admin").ToString().ToLower();
 </script>
