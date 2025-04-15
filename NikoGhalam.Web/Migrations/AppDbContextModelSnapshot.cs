@@ -59,7 +59,7 @@ namespace NikoGhalam.Web.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CartItem");
+                    b.ToTable("CartItem", (string)null);
                 });
 
             modelBuilder.Entity("NikoGhalam.Web.Models.FeedBack", b =>
@@ -87,7 +87,7 @@ namespace NikoGhalam.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FeedBacks");
+                    b.ToTable("FeedBacks", (string)null);
                 });
 
             modelBuilder.Entity("NikoGhalam.Web.Models.Invoice", b =>
@@ -133,7 +133,7 @@ namespace NikoGhalam.Web.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Invoices");
+                    b.ToTable("Invoices", (string)null);
                 });
 
             modelBuilder.Entity("NikoGhalam.Web.Models.InvoiceItem", b =>
@@ -172,7 +172,7 @@ namespace NikoGhalam.Web.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("InvoiceItems");
+                    b.ToTable("InvoiceItems", (string)null);
                 });
 
             modelBuilder.Entity("NikoGhalam.Web.Models.Otp", b =>
@@ -199,7 +199,7 @@ namespace NikoGhalam.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Otps");
+                    b.ToTable("Otps", (string)null);
                 });
 
             modelBuilder.Entity("NikoGhalam.Web.Models.Product", b =>
@@ -235,7 +235,7 @@ namespace NikoGhalam.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
 
                     b.HasData(
                         new
@@ -302,7 +302,7 @@ namespace NikoGhalam.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UpdateQuantityRequests");
+                    b.ToTable("UpdateQuantityRequests", (string)null);
                 });
 
             modelBuilder.Entity("NikoGhalam.Web.Models.User", b =>
@@ -330,7 +330,7 @@ namespace NikoGhalam.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("NikoGhalam.Web.Models.UserAddress", b =>
@@ -378,7 +378,7 @@ namespace NikoGhalam.Web.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserAddresses");
+                    b.ToTable("UserAddresses", (string)null);
                 });
 
             modelBuilder.Entity("NikoGhalam.Web.Models.UserDashboard", b =>
@@ -407,7 +407,7 @@ namespace NikoGhalam.Web.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserDashboards");
+                    b.ToTable("UserDashboards", (string)null);
                 });
 
             modelBuilder.Entity("NikoGhalam.Web.Models.ZarinpalPaymentRequest", b =>
@@ -442,7 +442,7 @@ namespace NikoGhalam.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ZarinpalPaymentRequests");
+                    b.ToTable("ZarinpalPaymentRequests", (string)null);
                 });
 
             modelBuilder.Entity("NikoGhalam.Web.Models.CartItem", b =>

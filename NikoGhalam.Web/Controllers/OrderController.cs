@@ -1,26 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
-using NikoGhalam.Web.Models;
-using NikoGhalam.Web.Context;
-using NikoGhalam.Web.ViewModels;
-using Newtonsoft.Json;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
-using System.Net.Http.Headers; // جایگزین کنید با فضای نام دیتابیس خود
+using System.Threading.Tasks;
+using NikoGhalam.Web.Context;
+using NikoGhalam.Web.Models;
+using NikoGhalam.Web.ViewModels;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace YourNamespace.Controllers
 {
     public class OrderController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly string merchant = "dbcd3bc2-e9e6-47b3-ba65-7987b241196e";
+        private readonly string callbackUrl = "https://localhost:5001/Order/VerifyPayment"; // Update this with your callback URL
 
         public OrderController(AppDbContext context)
         {
             _context = context;
         }
-
 
         [HttpGet]
         [Route("/Order/Checkout/{invoiceId}")]
@@ -162,55 +166,63 @@ namespace YourNamespace.Controllers
         [Route("/Order/InitiatePayment")]
         public async Task<IActionResult> InitiatePayment([FromBody] InitiatePaymentRequest request)
         {
+            // بررسی اولیه
             var invoice = await _context.Invoices
                 .Include(i => i.Items)
                 .FirstOrDefaultAsync(i => i.Id == request.InvoiceId && i.Status == InvoiceStatus.Unpaid);
 
             if (invoice == null)
-            {
-                return NotFound("فاکتور پیدا نشد یا وضعیت فاکتور پرداخت شده است.");
-            }
+                return NotFound("فاکتور یافت نشد یا قبلاً پرداخت شده است.");
 
-            string zarinpalApiUrl = "https://sandbox.zarinpal.com/pg/v4/payment/request.json";
-            string merchantId = "dbcd3bc2-e9e6-47b3-ba65-7987b241196e";
+            // اطلاعات پرداخت
+            string merchantId = "dbcd3bc2-e9e6-47b3-ba65-7987b241196e"; // 👈 مرچنت زرین‌پال را اینجا تنظیم کن
+            string callbackUrl = $"https://localhost:7275/Order/VerifyPayment?invoiceId={invoice.Id}";
+            string description = $"پرداخت فاکتور شماره {invoice.InvoiceNumber}";
+            int amount = (int)invoice.TotalAmount * 10; // 👈 به ریال
 
-            var paymentRequest = new
+            // ساخت Body به فرمت مورد نیاز زرین‌پال
+            var payload = new
             {
-                MerchantID = merchantId,
-                Amount = (int)invoice.TotalAmount * 10,
-                Description = $"پرداخت فاکتور شماره {invoice.InvoiceNumber}",
-                CallbackURL = $"https://localhost:5001/Order/VerifyPayment?invoiceId={invoice.Id}"
+                merchant_id = merchantId, // دقت کن: دقیقا باید `merchant_id` باشه نه `MerchantID`
+                amount = amount,
+                callback_url = callbackUrl,
+                description = description
             };
 
-            using (var httpClient = new HttpClient())
+            var jsonPayload = JsonConvert.SerializeObject(payload);
+
+            using (var client = new HttpClient())
             {
-                httpClient.DefaultRequestHeaders.Accept.Clear();
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
+                var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
-                var jsonData = JsonConvert.SerializeObject(paymentRequest);
-                var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-
-                var response = await httpClient.PostAsync(zarinpalApiUrl, content);
+                var response = await client.PostAsync("https://api.zarinpal.com/pg/v4/payment/request.json", content);
                 var responseString = await response.Content.ReadAsStringAsync();
 
-                if (responseString.TrimStart().StartsWith("<"))
-                {
-                    return BadRequest(new { isSuccess = false, message = "پاسخ دریافتی از زرین‌پال معتبر نیست." });
-                }
+                var json = JObject.Parse(responseString);
 
-                var zarinpalResponse = JsonConvert.DeserializeObject<ZarinpalResponse>(responseString);
-
-                if (zarinpalResponse.Status == 100)
+                if (json["data"] != null && json["data"]["code"]?.ToString() == "100")
                 {
-                    return Ok(new { IsSuccess = true, PaymentUrl = $"https://sandbox.zarinpal.com/pg/StartPay/{zarinpalResponse.Authority}" });
+                    string authority = json["data"]["authority"]?.ToString();
+                    string gatewayUrl = $"https://www.zarinpal.com/pg/StartPay/{authority}";
+
+                    return Ok(new
+                    {
+                        IsSuccess = true,
+                        PaymentUrl = gatewayUrl
+                    });
                 }
                 else
                 {
-                    return BadRequest(new { IsSuccess = false, Message = "خطا در ایجاد درخواست پرداخت" });
+                    string error = json["errors"]?["message"]?.ToString() ?? "خطا در ارتباط با زرین‌پال";
+                    return BadRequest(new
+                    {
+                        IsSuccess = false,
+                        Message = error
+                    });
                 }
             }
         }
+
 
 
         [HttpGet]
@@ -219,30 +231,23 @@ namespace YourNamespace.Controllers
         {
             if (Status == "OK")
             {
-                // تأیید پرداخت با زرین‌پال
                 var verificationResult = await VerifyWithZarinpal(Authority, invoiceId);
 
                 if (verificationResult.IsSuccess)
                 {
-                    // در اینجا می‌توان در صورت نیاز از verificationResult.RefID استفاده کرد
-                    // هدایت به صفحه موفقیت
                     return RedirectToAction("PaymentSuccess", new { invoiceId = invoiceId });
                 }
                 else
                 {
-                    // هدایت به صفحه شکست
                     return RedirectToAction("PaymentFailed", new { invoiceId = invoiceId });
                 }
             }
             else
             {
-                // پرداخت ناموفق بوده یا لغو شده است
                 return RedirectToAction("PaymentFailed", new { invoiceId = invoiceId });
             }
         }
 
-
-        // تغییر امضا به سه بخش: IsSuccess, Message و RefID
         private async Task<(bool IsSuccess, string Message, long? RefID)> VerifyWithZarinpal(string authority, Guid invoiceId)
         {
             var invoice = await _context.Invoices.FindAsync(invoiceId);
@@ -251,43 +256,40 @@ namespace YourNamespace.Controllers
                 return (false, "فاکتور پیدا نشد.", null);
             }
 
-            string zarinpalApiUrl = "https://sandbox.zarinpal.com/pg/rest/WebGate/PaymentRequest.json";
-            string merchantId = "dbcd3bc2-e9e6-47b3-ba65-7987b241196e"; // مرچنت سندباکس
-
-            var verificationRequest = new
+            var parameters = new
             {
-                MerchantID = merchantId,
+                MerchantID = merchant,
                 Authority = authority,
-                Amount = (int)invoice.TotalAmount * 10 // تبدیل به ریال
+
+                Amount = (int)invoice.TotalAmount * 10
             };
 
-            using (var httpClient = new HttpClient())
+            using (var client = new HttpClient())
             {
-                var content = new StringContent(JsonConvert.SerializeObject(verificationRequest), Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync(zarinpalApiUrl, content);
+                var content = new StringContent(JsonConvert.SerializeObject(parameters), Encoding.UTF8, "application/json");
+                var response = await client.PostAsync("https://sandbox.zarinpal.com/pg/v4/payment/verify.json", content);
                 var responseString = await response.Content.ReadAsStringAsync();
+                JObject responseObject = JObject.Parse(responseString);
 
-                // خروجی را deserialize کن به کلاس ZarinpalVerificationResponse
-                var zarinpalVerificationResponse = JsonConvert.DeserializeObject<ZarinpalVerificationResponse>(responseString);
-
-                if (zarinpalVerificationResponse.Status == 100)
+                if (responseObject["data"] != null && responseObject["data"]["code"]?.ToString() == "100")
                 {
-                    // ذخیره اطلاعات پرداخت
-                    if (invoice != null)
-                    {
-                        invoice.Status = InvoiceStatus.Paid;
-                        invoice.PaymentRefId = zarinpalVerificationResponse.RefID.ToString(); // ثبت شماره پیگیری
-                        await _context.SaveChangesAsync();
-                    }
-                    return (true, "پرداخت با موفقیت تأیید شد.", zarinpalVerificationResponse.RefID);
+                    long? refId = responseObject["data"]["ref_id"]?.Value<long?>();
+
+                    invoice.Status = InvoiceStatus.Paid;
+                    invoice.PaymentRefId = refId.ToString();
+                    await _context.SaveChangesAsync();
+
+                    return (true, "پرداخت با موفقیت تأیید شد.", refId);
                 }
                 else
                 {
-                    return (false, "خطا در تأیید پرداخت.", null);
+                    string errorMessage = responseObject["errors"]?["message"]?.ToString() ?? "خطا در تأیید پرداخت";
+                    return (false, errorMessage, null);
                 }
             }
-        }
 
+        }
+     
         [HttpGet]
         [Route("/Order/GetUserInvoices/{userId}")]
         public async Task<IActionResult> GetUserInvoices(Guid userId)
