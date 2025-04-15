@@ -166,7 +166,6 @@ namespace YourNamespace.Controllers
         [Route("/Order/InitiatePayment")]
         public async Task<IActionResult> InitiatePayment([FromBody] InitiatePaymentRequest request)
         {
-            // بررسی اولیه
             var invoice = await _context.Invoices
                 .Include(i => i.Items)
                 .FirstOrDefaultAsync(i => i.Id == request.InvoiceId && i.Status == InvoiceStatus.Unpaid);
@@ -174,17 +173,22 @@ namespace YourNamespace.Controllers
             if (invoice == null)
                 return NotFound("فاکتور یافت نشد یا قبلاً پرداخت شده است.");
 
-            // اطلاعات پرداخت
-            string merchantId = "dbcd3bc2-e9e6-47b3-ba65-7987b241196e"; // 👈 مرچنت زرین‌پال را اینجا تنظیم کن
+            // ✅ محاسبه هزینه‌ها
+            decimal tax = invoice.TotalAmount * 0.1m;
+            decimal shipping = 40000;
+            decimal finalAmountToman = invoice.TotalAmount + tax + shipping;
+
+            // ✅ تبدیل به ریال
+            int amountInRial = (int)(finalAmountToman * 10);
+
+            string merchantId = "dbcd3bc2-e9e6-47b3-ba65-7987b241196e";
             string callbackUrl = $"https://localhost:7275/Order/VerifyPayment?invoiceId={invoice.Id}";
             string description = $"پرداخت فاکتور شماره {invoice.InvoiceNumber}";
-            int amount = (int)invoice.TotalAmount * 10; // 👈 به ریال
 
-            // ساخت Body به فرمت مورد نیاز زرین‌پال
             var payload = new
             {
-                merchant_id = merchantId, // دقت کن: دقیقا باید `merchant_id` باشه نه `MerchantID`
-                amount = amount,
+                merchant_id = merchantId,
+                amount = amountInRial,
                 callback_url = callbackUrl,
                 description = description
             };
@@ -195,7 +199,7 @@ namespace YourNamespace.Controllers
             {
                 var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
-                var response = await client.PostAsync("https://api.zarinpal.com/pg/v4/payment/request.json", content);
+                var response = await client.PostAsync("https://sandbox.zarinpal.com/pg/v4/payment/request.json", content);
                 var responseString = await response.Content.ReadAsStringAsync();
 
                 var json = JObject.Parse(responseString);
@@ -203,7 +207,7 @@ namespace YourNamespace.Controllers
                 if (json["data"] != null && json["data"]["code"]?.ToString() == "100")
                 {
                     string authority = json["data"]["authority"]?.ToString();
-                    string gatewayUrl = $"https://www.zarinpal.com/pg/StartPay/{authority}";
+                    string gatewayUrl = $"https://sandbox.zarinpal.com/pg/StartPay/{authority}";
 
                     return Ok(new
                     {
@@ -225,28 +229,33 @@ namespace YourNamespace.Controllers
 
 
 
+
         [HttpGet]
         [Route("/Order/VerifyPayment")]
         public async Task<IActionResult> VerifyPayment(Guid invoiceId, string Authority, string Status)
         {
-            if (Status == "OK")
+            if (string.IsNullOrEmpty(Status) || Status.ToLower() != "ok")
             {
-                var verificationResult = await VerifyWithZarinpal(Authority, invoiceId);
+                return RedirectToAction("PaymentFailed", new { invoiceId = invoiceId });
+            }
 
-                if (verificationResult.IsSuccess)
-                {
-                    return RedirectToAction("PaymentSuccess", new { invoiceId = invoiceId });
-                }
-                else
-                {
-                    return RedirectToAction("PaymentFailed", new { invoiceId = invoiceId });
-                }
+            if (string.IsNullOrEmpty(Authority))
+            {
+                return RedirectToAction("PaymentFailed", new { invoiceId = invoiceId });
+            }
+
+            var verificationResult = await VerifyWithZarinpal(Authority, invoiceId);
+
+            if (verificationResult.IsSuccess)
+            {
+                return RedirectToAction("PaymentSuccess", new { invoiceId = invoiceId });
             }
             else
             {
                 return RedirectToAction("PaymentFailed", new { invoiceId = invoiceId });
             }
         }
+
 
         private async Task<(bool IsSuccess, string Message, long? RefID)> VerifyWithZarinpal(string authority, Guid invoiceId)
         {
@@ -255,13 +264,20 @@ namespace YourNamespace.Controllers
             {
                 return (false, "فاکتور پیدا نشد.", null);
             }
+            // ✅ محاسبه هزینه‌ها
+            decimal tax = invoice.TotalAmount * 0.1m;
+            decimal shipping = 40000;
+            decimal finalAmountToman = invoice.TotalAmount + tax + shipping;
+
+            // ✅ تبدیل به ریال
+            int amountInRial = (int)(finalAmountToman * 10);
 
             var parameters = new
             {
-                MerchantID = merchant,
-                Authority = authority,
+                merchant_id = merchant,
+                authority = authority,
 
-                Amount = (int)invoice.TotalAmount * 10
+                amount = amountInRial
             };
 
             using (var client = new HttpClient())
@@ -345,39 +361,57 @@ namespace YourNamespace.Controllers
 
             return Ok(new { isSuccess = true, data = invoices });
         }
+
+
         [HttpGet]
         [Route("/Order/PaymentSuccess")]
         public async Task<IActionResult> PaymentSuccess(Guid invoiceId)
         {
-            // دریافت اطلاعات فاکتور به همراه اقلام، کاربر و آدرس تحویل
             var invoice = await _context.Invoices
-    .Include(i => i.Items)
-    .FirstOrDefaultAsync(i => i.Id == invoiceId);
-            if (invoice != null)
-            {
-                // محاسبه جزئیات در صورت نیاز
-                decimal shippingCost = 40000; // هزینه ارسال ثابت
-                decimal subtotal = invoice.Items.Sum(x => x.TotalAmount);
-                decimal tax = subtotal * 0.1m; // 10 درصد مالیات
-                decimal grandTotal = subtotal + shippingCost + tax;
+                .Include(i => i.Items)
+                    .ThenInclude(item => item.Product) // افزودن وابستگی محصولات
+                .Include(i => i.DeliveryAddress)      // افزودن وابستگی آدرس
+                .FirstOrDefaultAsync(i => i.Id == invoiceId);
 
-                ViewBag.ShippingCost = shippingCost;
-                ViewBag.Subtotal = subtotal;
-                ViewBag.Tax = tax;
-                ViewBag.GrandTotal = grandTotal;
+            if (invoice == null)
+            {
+                return NotFound();
             }
+
+            decimal shippingCost = 40000;
+            decimal subtotal = invoice.Items.Sum(x => x.TotalAmount);
+            decimal tax = subtotal * 0.1m;
+            decimal grandTotal = subtotal + shippingCost + tax;
+
+            ViewBag.ShippingCost = shippingCost;
+            ViewBag.Subtotal = subtotal;
+            ViewBag.Tax = tax;
+            ViewBag.GrandTotal = grandTotal;
+
             return View(invoice);
         }
 
         [HttpGet]
         [Route("/Order/PaymentFailed")]
-        public IActionResult PaymentFailed(Guid invoiceId)
+        public async Task<IActionResult> PaymentFailed(Guid invoiceId)
         {
-            // می‌توانید اطلاعات فاکتور یا پیام خطا را نیز به ویو ارسال کنید.
-            ViewBag.InvoiceId = invoiceId;
-            return View();
+            var invoice = await _context.Invoices
+                .Include(i => i.Items)
+                .FirstOrDefaultAsync(i => i.Id == invoiceId);
+
+            if (invoice == null)
+            {
+                return NotFound("فاکتور یافت نشد.");
+            }
+
+            decimal subtotal = invoice.Items.Sum(i => i.TotalAmount);
+            decimal shippingCost = 40000;
+            decimal tax = subtotal * 0.1m;
+            decimal grandTotal = subtotal + tax + shippingCost;
+
+            ViewBag.GrandTotal = grandTotal;
+
+            return View(invoice);
         }
-
-
     }
 }

@@ -1,33 +1,33 @@
-﻿@model NikoGhalam.Web.Models.Invoice
+﻿@model Invoice
 
-<div class="container mt-5">
+<div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-xl-6 col-lg-8 col-md-10">
-            <div class="summery-box border border-danger p-4 rounded">
-                <div class="sidebar-title text-center">
-                    <div class="loader-line"></div>
-                    <h4 class="text-danger">پرداخت ناموفق بود</h4>
+            <div class="card border-danger shadow-sm rounded-4">
+                <div class="card-header bg-danger text-white text-center py-3 rounded-top-4">
+                    <h4 class="mb-0"><i class="fa-solid fa-circle-exclamation me-2"></i>پرداخت ناموفق بود</h4>
                 </div>
-                <div class="summery-content mt-4">
-                    <p class="text-center">متأسفانه پرداخت شما با خطا مواجه شد. لطفاً مجدداً تلاش کنید یا با پشتیبانی تماس بگیرید.</p>
-                    <ul class="list-unstyled mt-3">
-                        <li>
-                            <p class="fw-semibold">شماره فاکتور:</p>
-                            <h6>@Model.InvoiceNumber</h6>
+                <div class="card-body text-center">
+                    <p class="text-muted mb-4">متأسفانه پرداخت شما با خطا مواجه شد.<br />لطفاً مجدداً تلاش کنید یا با پشتیبانی تماس بگیرید.</p>
+
+                    <ul class="list-group text-end mb-4">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span class="fw-bold">شماره فاکتور:</span>
+                            <span>@Model.InvoiceNumber</span>
                         </li>
-                        <li>
-                            <p class="fw-semibold">تاریخ صدور:</p>
-                            <h6>@Model.IssueDate.ToString("yyyy/MM/dd")</h6>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span class="fw-bold">تاریخ صدور:</span>
+                            <span>@Model.IssueDate.ToString("yyyy/MM/dd")</span>
                         </li>
-                        <li>
-                            <p class="fw-semibold">مبلغ کل:</p>
-                            <h6>@Model.TotalAmount.ToString("N0") تومان</h6>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span class="fw-bold">مبلغ کل (بدون مالیات و ارسال):</span>
+                            <span>@ViewBag.GrandTotal.ToString("N0") تومان</span>
                         </li>
                     </ul>
-                    <div class="text-center mt-4">
-                        <a href="@Url.Action("RetryPayment", "Invoice", new { id = Model.Id })" class="btn btn-danger">تلاش مجدد برای پرداخت</a>
-                        <a href="@Url.Action("Index", "Home")" class="btn btn-secondary ms-2">بازگشت به صفحه اصلی</a>
-                    </div>
+
+                    <a href="/" class="btn btn-outline-danger px-4">
+                        <i class="fa-solid fa-house me-2"></i>بازگشت به صفحه اصلی
+                    </a>
                 </div>
             </div>
         </div>
