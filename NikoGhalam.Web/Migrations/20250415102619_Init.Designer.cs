@@ -12,7 +12,7 @@ using NikoGhalam.Web.Context;
 namespace NikoGhalam.Web.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250316142012_Init")]
+    [Migration("20250415102619_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -170,6 +170,8 @@ namespace NikoGhalam.Web.Migrations
 
                     b.HasIndex("InvoiceId");
 
+                    b.HasIndex("ProductId");
+
                     b.ToTable("InvoiceItems");
                 });
 
@@ -206,6 +208,9 @@ namespace NikoGhalam.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("CoverImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
@@ -236,9 +241,10 @@ namespace NikoGhalam.Web.Migrations
                         new
                         {
                             Id = new Guid("11111111-1111-1111-1111-111111111111"),
+                            CoverImageUrl = "/assets/images/product/Cover-Gold.png",
                             CreateDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "   با سلام و عرض ادب خدمت هنرجویان عزیز\r\n\r\n                                این برنامه طوری طراحی شده که بتوانید در هر مکان و هر زمانی به راحتی مهارت زیبانویسی خود را ارتقا دهید.\r\n\r\n                                این پک آموزشی شامل :\r\n\r\n                                نرم افزار\r\n                                بیش از ۲۰۰ فیلم آموزشی\r\n                                دفتر بارگذاری\r\n                                دفتر تمرین\r\n                                پشتیبانی\r\n\r\n                               طلایی : چت با پشتیبان + تماس روزانه + پشتیبانی ویژه ۵۹۸ تومان",
-                            ImageUrl = "/assets/images/product/Gold.Png",
+                            ImageUrl = "/assets/images/product/Gold.Webp",
                             IsDeleted = false,
                             Name = "پک طلایی",
                             Price = 598000m,
@@ -247,9 +253,10 @@ namespace NikoGhalam.Web.Migrations
                         new
                         {
                             Id = new Guid("22222222-2222-2222-2222-222222222222"),
+                            CoverImageUrl = "/assets/images/product/Silver-Cover.png",
                             CreateDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "   با سلام و عرض ادب خدمت هنرجویان عزیز\r\n\r\n                                این برنامه طوری طراحی شده که بتوانید در هر مکان و هر زمانی به راحتی مهارت زیبانویسی خود را ارتقا دهید.\r\n\r\n                                این پک آموزشی شامل :\r\n\r\n                                نرم افزار\r\n                                بیش از ۲۰۰ فیلم آموزشی\r\n                                دفتر بارگذاری\r\n                                دفتر تمرین\r\n                                پشتیبانی\r\n\r\n                                نقره ای : چت با پشتیبان + تماس هفتگی ۴۹۸ تومان",
-                            ImageUrl = "/assets/images/product/Silver.Png",
+                            ImageUrl = "/assets/images/product/Silver.Webp",
                             IsDeleted = false,
                             Name = "پک نقره ای",
                             Price = 498000m,
@@ -258,9 +265,10 @@ namespace NikoGhalam.Web.Migrations
                         new
                         {
                             Id = new Guid("33333333-3333-3333-3333-333333333333"),
+                            CoverImageUrl = "/assets/images/product/Browns-Cover.png",
                             CreateDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "   با سلام و عرض ادب خدمت هنرجویان عزیز\r\n\r\n                                این برنامه طوری طراحی شده که بتوانید در هر مکان و هر زمانی به راحتی مهارت زیبانویسی خود را ارتقا دهید.\r\n\r\n                                این پک آموزشی شامل :\r\n\r\n                                نرم افزار\r\n                                بیش از ۲۰۰ فیلم آموزشی\r\n                                دفتر بارگذاری\r\n                                دفتر تمرین\r\n                                پشتیبانی\r\n\r\n                                برنزی (اقتصادی) : چت با پشتیبان  ۳۹۸ تومان",
-                            ImageUrl = "/assets/images/product/Browns.Png",
+                            ImageUrl = "/assets/images/product/Browns.Webp",
                             IsDeleted = false,
                             Name = "پک برنزی",
                             Price = 398000m,
@@ -346,7 +354,6 @@ namespace NikoGhalam.Web.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostalCode")
@@ -380,9 +387,6 @@ namespace NikoGhalam.Web.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
@@ -390,10 +394,6 @@ namespace NikoGhalam.Web.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -489,7 +489,15 @@ namespace NikoGhalam.Web.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("NikoGhalam.Web.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Invoice");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("NikoGhalam.Web.Models.UserAddress", b =>

@@ -1,0 +1,35 @@
+﻿@model NikoGhalam.Web.Models.Invoice
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-8 col-md-10">
+            <div class="summery-box border border-danger p-4 rounded">
+                <div class="sidebar-title text-center">
+                    <div class="loader-line"></div>
+                    <h4 class="text-danger">پرداخت ناموفق بود</h4>
+                </div>
+                <div class="summery-content mt-4">
+                    <p class="text-center">متأسفانه پرداخت شما با خطا مواجه شد. لطفاً مجدداً تلاش کنید یا با پشتیبانی تماس بگیرید.</p>
+                    <ul class="list-unstyled mt-3">
+                        <li>
+                            <p class="fw-semibold">شماره فاکتور:</p>
+                            <h6>@Model.InvoiceNumber</h6>
+                        </li>
+                        <li>
+                            <p class="fw-semibold">تاریخ صدور:</p>
+                            <h6>@Model.IssueDate.ToString("yyyy/MM/dd")</h6>
+                        </li>
+                        <li>
+                            <p class="fw-semibold">مبلغ کل:</p>
+                            <h6>@Model.TotalAmount.ToString("N0") تومان</h6>
+                        </li>
+                    </ul>
+                    <div class="text-center mt-4">
+                        <a href="@Url.Action("RetryPayment", "Invoice", new { id = Model.Id })" class="btn btn-danger">تلاش مجدد برای پرداخت</a>
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-secondary ms-2">بازگشت به صفحه اصلی</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

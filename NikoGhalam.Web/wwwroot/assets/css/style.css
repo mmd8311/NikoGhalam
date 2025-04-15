@@ -1637,7 +1637,6 @@ body.skeleton_body {
 
 [dir=rtl] .collection-banner {
     direction: ltr;
-    margin-bottom: 100px;
     width: 100%;
 }
 
@@ -1944,41 +1943,81 @@ body.skeleton_body {
         margin: 0 6px
     }
 
+
+/* استایل اصلی social-icon */
 .home-section-3 .social-icon {
     align-items: center;
     display: flex;
     gap: 20px;
     position: absolute;
-    right: -3%;
+    left: -3%; /* تغییر از right به left برای چسبیدن به سمت چپ */
+    right: unset; /* حذف right */
     top: 20%;
     transform: rotate(-90deg);
-    z-index: 1
+    z-index: 1;
 }
 
+/* برای RTL (راست به چپ) */
 [dir=rtl] .home-section-3 .social-icon {
-    left: -19%;
-    right: unset
+    left: -3%;
+    right: unset;
 }
 
-@media (max-width:991px) {
+/* برای موبایل */
+@media (max-width: 991px) {
     .home-section-3 .social-icon {
-        display: none
+        display: none;
     }
 }
 
+/* استایل لینک‌ها */
 .home-section-3 .social-icon li a {
     color: rgba(var(--light-color), 1);
     font-weight: 700;
     padding: 0;
-    text-transform: uppercase
+    text-transform: uppercase;
 }
 
     .home-section-3 .social-icon li a h6 {
-        margin-bottom: 0
+        margin-bottom: 0;
     }
 
 .dark .home-section-3 .social-icon li a h6 {
-    color: #222
+    color: #222;
+}
+
+.home-section-3 .social-icon li a i,
+.home-section-3 .social-icon li a img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+/* اصلاح مشکل اسکرول اضافی */
+@media (min-width: 992px) {
+    .home-section-3 {
+        overflow: visible !important;
+        position: relative !important;
+    }
+
+        /* اضافه کردن یک pseudo-element برای پر کردن فضای خالی */
+        .home-section-3::after {
+            content: "";
+            display: block;
+            height: 0 !important;
+            clear: both !important;
+        }
+
+        /* اصلاح فاصله‌ها */
+        .home-section-3 .home-banner.p-right .contain-banner > div {
+            margin-bottom: 30px !important;
+        }
+
+        /* اطمینان از اینکه home-banner مشکلی ندارد */
+        .home-section-3 .home-banner {
+            margin-bottom: 0 !important;
+            overflow: visible !important;
+        }
 }
 
 [dir=rtl] .swiper {
@@ -4484,7 +4523,6 @@ footer .footer-content h5 {
 
 
 .heading-banner {
-    background-color: rgba(var(--box-background), 1);
     background-position: 100%;
     background-repeat: no-repeat;
     border-radius: 6px;
@@ -5579,19 +5617,96 @@ footer .footer-content h5 {
     .btn_outline.sm {
         padding: 6px calc(4.8px + 1vw)
     }
-
-/* استایل‌های واکنش‌گرا */
 @media (max-width: 991px) {
+    .heading-banner {
+        position: relative;
+        padding: 15px 0 !important;
+        margin: 0 !important;
+    }
+
+        .heading-banner::before,
+        .heading-banner::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: #e0e0e0; /* رنگ خاکستری ملایم */
+            margin: 10px 0; /* فاصله از متن */
+        }
+
+        .heading-banner::before {
+            margin-bottom: 15px; /* فاصله خط بالا از عنوان */
+        }
+
+        .heading-banner::after {
+            margin-top: 15px; /* فاصله خط پایین از عنوان */
+        }
+
+        .heading-banner .col-sm-6 {
+            text-align: center !important;
+            width: 100%;
+            padding: 0 !important;
+        }
+
+        .heading-banner h4 {
+            margin: 0;
+            padding: 0;
+        }
+
+    /* حذف فاصله‌های اضافی و تنظیم پس‌زمینه */
     .login-section {
-        justify-content: center; /* در دستگاه‌های کوچک، محتوا وسط قرار بگیرد */
-        padding-left: 0;
+        padding: 0 !important;
+        margin: 0 !important;
+        height: auto !important;
+        min-height: 40vh;
+        background-image: none !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* کاهش فاصله بالای باکس لاگین */
+    .log-in-box {
+        margin-top: 20px !important;
+        margin-bottom: 20px;
+        padding: 20px !important;
+        width: 90% !important;
+        max-width: 100% !important;
+        margin-right: 20px;
+    }
+
+    /* حذف فاصله اضافی در بخش ورود */
+    .section-b-space.pt-0 {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    /* تنظیم فونت و فاصله‌های داخلی برای موبایل */
+    .log-in-title h4 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .log-in-title p {
+        margin-bottom: 15px;
+    }
+
+    /* فشرده‌تر کردن فرم در موبایل */
+    #loginForm .col-12 {
+        padding: 0 5px;
+    }
+
+    /* تنظیم دکمه‌ها برای موبایل */
+    #btn_getCode, #btn_signIn, #btn_newGetCode {
+        width: 100%;
+        margin-top: 10px;
     }
 }
 /* استایل کلی بخش ورود */
 .login-section {
     position: relative;
     direction: rtl;
-    background-image: url('/assets/images/login/nikoqlm-login.webp'); /* تصویر پس‌زمینه */
+    background-image: url('/assets/images/login/20250409_160446_0000.png'); /* تصویر پس‌زمینه */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -5797,9 +5912,6 @@ footer .footer-content h5 {
             position: absolute;
             width: 30%
         }
-.layout-light {
-    background-color: rgba(var(--light-background), 1)
-}
 
 
 .about-icon {
@@ -7223,14 +7335,15 @@ footer .footer-content h5 {
 
 .cart-bottom h6 {
     font-weight: 500;
-    margin: 4px 0
+    margin: 4px 0;
+    direction: rtl; /* Ensures right-to-left text direction */
 }
 
     .cart-bottom h6 span {
-        float: right;
-        font-size: 16px
+        display: inline-block;
+        font-size: 16px;
+        margin-right: 5px; /* Adds some space after the colon */
     }
-
 .cart-bottom > span {
     display: block;
     font-size: calc(14.8px + .0625vw);
@@ -7317,12 +7430,6 @@ footer .footer-content h5 {
         max-width: 330px !important
     }
 
-@media (max-width:991px) {
-    .cart-table table tbody tr td:first-child {
-        max-width: unset;
-        min-width: 366px
-    }
-}
 
 .cart-table table tbody tr td:last-child {
     min-width: 70px
@@ -7448,37 +7555,6 @@ header .top_header p span {
     border-radius: 8px; /* اضافه کردن گوشه‌های گرد */
 }
 
-.quantity-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-    .quantity-box button {
-        background-color: #007bff;
-        color: white;
-        border: none;
-        padding: 5px 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        margin: 0 5px;
-        transition: background-color 0.3s ease;
-    }
-
-        .quantity-box button:hover {
-            background-color: #0056b3;
-        }
-
-    .quantity-box input {
-        width: 50px;
-        text-align: center;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 5px;
-        font-size: 16px;
-    }
-
 
 .product-box-3 .img-wrapper img {
     width: 100%; /* تنظیم عرض به 100% */
@@ -7534,4 +7610,244 @@ header .top_header p span {
 
 .testimonials-box .customer-img div h5 span {
   float: right
-} 
+}
+
+/* استایل برای دکمه‌های افزایش و کاهش */
+.quantity-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+    .quantity-box button {
+        background-color: #f5f5f5;
+        border: none;
+        color: #333;
+        font-size: 16px;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .quantity-box button:hover {
+            background-color: #e0e0e0;
+        }
+
+    .quantity-box input {
+        width: 40px;
+        text-align: center;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        background: transparent;
+    }
+
+/* استایل برای دکمه حذف */
+.remove-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+    .remove-button:hover {
+        background-color: #d32f2f;
+    }
+
+/* استایل برای دکمه پرداخت نهایی */
+#checkoutButton {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+    #checkoutButton:hover {
+        background-color: #388e3c;
+    }
+
+/* استایل برای دکمه پاک کردن سبد خرید */
+#clearAllButton {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+    #clearAllButton:hover {
+        background-color: #d32f2f;
+    }
+
+.payment-action {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+    padding: 10px 0;
+}
+
+    .payment-action .btn-solid {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .payment-action .btn-solid:hover {
+            background-color: #45a049;
+        }
+
+.order-summary ul li {
+    align-items: center;
+    display: flex;
+    width: 100%
+}
+.order-summary ul {
+margin-top: 20px;
+}
+
+/* استایل‌های جدید برای بخش فیدبک‌ها */
+.our-testimonials {
+    padding: 20px 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.testimonials-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin: 10px;
+    transition: all 0.3s ease;
+    height: auto;
+}
+
+    .testimonials-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+.customer-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+    .customer-item i {
+        position: absolute;
+        top: -15px;
+        left: -10px;
+        font-size: 40px;
+        color: #f3f3f3;
+        z-index: 0;
+    }
+
+.customer-box {
+    position: relative;
+    z-index: 1;
+}
+
+    .customer-box p {
+        font-size: 16px;
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+.customer-img {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .customer-img h5 {
+        font-weight: 600;
+        margin-bottom: 0;
+        color: #333;
+        text-align: right; /* ← راست‌چین */
+        direction: rtl;
+    }
+
+    .customer-img img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #fff;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+.btn-delete {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #333;
+    background: rgba(255,255,255,0.8);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 20px;
+    }
+
+    /* استایل بخش بازخوردها */
+.feedback-box {
+    background-color: #f9f9f9; /* رنگ پس‌زمینه */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.feedback-box .customer-item {
+    text-align: center;
+}
+
+.feedback-box .customer-img img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+.about-tag img {
+    width: 30px !important;
+    height: auto !important;
+    vertical-align: middle;
+    transition: 0.3s;
+}
+
+    .about-tag img:hover {
+        transform: scale(1.1);
+    }

@@ -7,7 +7,7 @@ namespace NikoGhalam.Web.Models
     public class UserAddress : BaseEntity 
     {
         public Guid UserId { get; set; }
-        public string PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
         public string Title { get; set; }
         public string AddressText { get; set; }
         public string PostalCode { get; set; }

@@ -39,7 +39,7 @@
                                 <div class="col-sm-6">
                                     <div class="payment-box">
                                         <input class="custom-radio me-2" id="cod" type="radio" checked name="paymentMethod">
-                                        <label for="cod">پرداخت در محل</label>
+                                        <label for="cod">درگاه زرین پال</label>
                                     </div>
                                 </div>
                             </div>
@@ -67,58 +67,65 @@
     </section>
 
 
-    <div class="reviews-modal modal theme-modal fade" id="add-address" tabindex="-1" role="dialog" aria-modal="true">
-        <div class="modal-dialog modal-md modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>ویرایش آدرس</h4>
-                    <button class="btn-close" id="edit_Address_close" type="button" data-bs-dismiss="modal" aria-label="بستن"></button>
-                </div>
-                <div class="modal-body pt-0">
-                    <input type="hidden" id="Edit_Address_Id">
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <div class="from-group">
-                                <label class="form-label">عنوان</label>
-                                <input class="form-control" id="Address_Title" type="text" placeholder="عنوان آدرس را وارد کنید.">
-                            </div>
+<div class="reviews-modal modal theme-modal fade" id="add-address" tabindex="-1" role="dialog" aria-modal="true">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>افزودن آدرس</h4>
+                <button class="btn-close" id="edit_Address_close" type="button" data-bs-dismiss="modal" aria-label="بستن"></button>
+            </div>
+            <div class="modal-body pt-0">
+                <input type="hidden" id="Edit_Address_Id">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="from-group">
+                            <label class="form-label">عنوان <span class="text-danger">*</span></label>
+                            <input class="form-control" id="Address_Title" type="text" placeholder="عنوان آدرس را وارد کنید.">
+                            <div id="Address_Title_error" class="text-danger mt-1" style="display: none; font-size: 12px;">لطفاً عنوان آدرس را وارد کنید</div>
                         </div>
-                        <div class="col-6">
-                            <div class="from-group">
-                                <label class="form-label">کد پستی</label>
-                                <input class="form-control justnumber" id="PostalCode" type="text" placeholder="کد پستی خود را وارد کنید.">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="from-group">
-                                <label class="form-label">استان</label>
-                                <input id="Province" class="form-control" type="text" placeholder="استان خود را وارد کنید.">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="from-group">
-                                <label class="form-label">شهر</label>
-                                <input id="City" class="form-control" type="text" placeholder="شهر خود را وارد کنید.">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="from-group">
-                                <label class="form-label">تلفن</label>
-                                <input id="PhoneNumber" class="form-control justnumber" type="number" placeholder="تلفن خود را وارد کنید.">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="from-group">
-                                <label class="form-label">آدرس</label>
-                                <textarea id="AddressText" class="form-control" cols="30" rows="5" placeholder="آدرس خود را بنویسید..."></textarea>
-                            </div>
-                        </div>
-                        <button class="btn btn-submit" id="Address_submit" type="submit" data-bs-dismiss="modal" aria-label="بستن">ثبت</button>
                     </div>
+                    <div class="col-6">
+                        <div class="from-group">
+                                <label class="form-label">کد پستی<span class="text-danger">*</span></label>
+                            <input class="form-control justnumber" id="PostalCode" type="text" placeholder="کد پستی خود را وارد کنید.">
+                                <div id="PostalCode_error" class="text-danger mt-1" style="display: none; font-size: 12px;">لطفاً کد پستی را وارد کنید</div>
+
+                            </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="from-group">
+                            <label class="form-label">استان <span class="text-danger">*</span></label>
+                            <input id="Province" class="form-control" type="text" placeholder="استان خود را وارد کنید.">
+                            <div id="Province_error" class="text-danger mt-1" style="display: none; font-size: 12px;">لطفاً استان را وارد کنید</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="from-group">
+                            <label class="form-label">شهر <span class="text-danger">*</span></label>
+                            <input id="City" class="form-control" type="text" placeholder="شهر خود را وارد کنید.">
+                            <div id="City_error" class="text-danger mt-1" style="display: none; font-size: 12px;">لطفاً شهر را وارد کنید</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="from-group">
+                            <label class="form-label">تلفن</label>
+                            <input id="PhoneNumber" class="form-control justnumber" type="number" placeholder="تلفن خود را وارد کنید.">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="from-group">
+                            <label class="form-label">آدرس <span class="text-danger">*</span></label>
+                            <textarea id="AddressText" class="form-control" cols="30" rows="5" placeholder="آدرس خود را بنویسید..."></textarea>
+                            <div id="AddressText_error" class="text-danger mt-1" style="display: none; font-size: 12px;">لطفاً آدرس را وارد کنید</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-submit" id="Address_submit" type="button">ثبت</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 
     <div class="reviews-modal modal theme-modal fade" id="edit-address" tabindex="-1" role="dialog" aria-modal="true">
         <div class="modal-dialog modal-md modal-dialog-centered" role="document">
@@ -132,26 +139,30 @@
                     <div class="row g-3">
                         <div class="col-6">
                             <div class="from-group">
-                                <label class="form-label">عنوان</label>
+                                <label class="form-label">عنوان <span class="text-danger">*</span></label>
                                 <input class="form-control" id="Edit_Address_Title" type="text" placeholder="عنوان آدرس را وارد کنید.">
+                                <div id="Edit_Address_Title_error" class="text-danger mt-1" style="display: none; font-size: 12px;">لطفاً عنوان آدرس را وارد کنید</div>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="from-group">
-                                <label class="form-label">کد پستی</label>
-                                <input class="form-control justnumber" id="Edit_PostalCode" type="text" placeholder="کد پستی خود را وارد کنید.">
+                                <label class="form-label">کد پستی<span class="text-danger">*</span></label>
+                                <input class="form-control justnumber" id="Edit_PostalCode" type="text">
+                                <div id="Edit_PostalCode_error" class="text-danger mt-1" style="display: none; font-size: 12px;">لطفاً کد پستی را وارد کنید</div>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="from-group">
-                                <label class="form-label">استان</label>
+                                <label class="form-label">استان <span class="text-danger">*</span></label>
                                 <input id="Edit_Province" class="form-control" type="text" placeholder="استان خود را وارد کنید.">
+                                <div id="Edit_Province_error" class="text-danger mt-1" style="display: none; font-size: 12px;">لطفاً استان را وارد کنید</div>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="from-group">
-                                <label class="form-label">شهر</label>
+                                <label class="form-label">شهر <span class="text-danger">*</span></label>
                                 <input id="Edit_City" class="form-control" type="text" placeholder="شهر خود را وارد کنید.">
+                                <div id="Edit_City_error" class="text-danger mt-1" style="display: none; font-size: 12px;">لطفاً شهر را وارد کنید</div>
                             </div>
                         </div>
                         <div class="col-6">
@@ -162,11 +173,12 @@
                         </div>
                         <div class="col-12">
                             <div class="from-group">
-                                <label class="form-label">آدرس</label>
+                                <label class="form-label">آدرس <span class="text-danger">*</span></label>
                                 <textarea id="Edit_AddressText" class="form-control" cols="30" rows="5" placeholder="آدرس خود را بنویسید..."></textarea>
+                                <div id="Edit_AddressText_error" class="text-danger mt-1" style="display: none; font-size: 12px;">لطفاً آدرس را وارد کنید</div>
                             </div>
                         </div>
-                        <button class="btn btn-submit" id="Edit_Address_submit" type="submit" data-bs-dismiss="modal" aria-label="بستن">ویرایش</button>
+                        <button class="btn btn-submit" id="Edit_Address_submit" type="button">ویرایش</button>
                     </div>
                 </div>
             </div>

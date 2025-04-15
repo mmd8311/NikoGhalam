@@ -12,10 +12,6 @@ namespace NikoGhalam.Web.Models
         [Required(ErrorMessage = "نام الزامی است.")]
         public string Name { get; set; }
 
-        public string? Address { get; set; }
-
-        [Required(ErrorMessage = "شماره تلفن الزامی است.")]
-        public string Phone { get; set; }
     }
 }
 

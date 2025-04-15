@@ -33,5 +33,8 @@ namespace NikoGhalam.Web.Models
         public UserAddress DeliveryAddress { get; set; }
 
         public string InvoiceNumber { get; set; }
+        public string? PaymentRefId { get; set; }
+
+
     }
 }

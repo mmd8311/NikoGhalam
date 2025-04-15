@@ -1,36 +1,37 @@
 ﻿$(document).ready(() => {
-    $("#btn-logout").click(function () {
+    $("#btn_logout").click(function () {
         logout();
     });
 
-});
 
-document.addEventListener('DOMContentLoaded', function () {
-    let lastScrollTop = 0;
-    const mobileFixOption = document.querySelector('.mobile-fix-option');
-
-    window.addEventListener('scroll', function () {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (scrollTop > lastScrollTop) {
-            // اسکرول به پایین => آرام مخفی شود
-            mobileFixOption.classList.add('hide');
-            mobileFixOption.classList.remove('show');
-        } else {
-            // اسکرول به بالا => آرام نمایش داده شود
-            mobileFixOption.classList.add('show');
-            mobileFixOption.classList.remove('hide');
-        }
-
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // جلوگیری از مقدار منفی
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
+    // مخفی کردن تب پایین در صفحه لاگین
     if (window.location.pathname === '/Account/Login') {
-        $(".skeleton_body").css("background-color", "#a37b73");
+        $(".mobile-fix-option").remove();
+    } else {
+        // مدیریت نمایش/مخفی کردن تب پایین در سایر صفحات
+        let lastScrollTop = 0;
+        const mobileFixOption = document.querySelector('.mobile-fix-option');
+
+        if (mobileFixOption) {
+            window.addEventListener('scroll', function () {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (scrollTop > lastScrollTop) {
+                    // اسکرول به پایین
+                    mobileFixOption.classList.add('hide');
+                    mobileFixOption.classList.remove('show');
+                } else {
+                    // اسکرول به بالا
+                    mobileFixOption.classList.add('show');
+                    mobileFixOption.classList.remove('hide');
+                }
+
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+        }
     }
 });
+
 
 function logout() {
     $.ajax({

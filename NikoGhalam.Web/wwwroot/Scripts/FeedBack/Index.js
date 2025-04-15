@@ -98,14 +98,13 @@ function loadFeedBacks() {
         }
     });
 }
-// تابع برای نمایش بازخوردها در صفحه
+
 function renderFeedBacks(feedBacks) {
     var feedbacksHtml = '';
     feedBacks.forEach(function (item) {
         feedbacksHtml += `
-             <div class="swiper-slide testimonials-box">
+            <div class="swiper-slide testimonials-box">
                 <div class="customer-item">
-                    <i class="fa-solid fa-quote-left"></i>
                     <div class="customer-box">
                         <p>${item.feedBackText}</p>
                     </div>
@@ -113,9 +112,9 @@ function renderFeedBacks(feedBacks) {
                 <div class="customer-img">
                     <div>
                         <h5>${item.customerName}</h5>
+                        ${isAdmin ? `<button class="btn btn-sm btn-danger btn-delete" data-id="${item.id}">حذف</button>` : ''}
                     </div>
-                    <img class="img-fluid" src="/assets/images/user/Default.Webp" alt="">
-                      ${isAdmin ? `<button class="btn btn-danger btn-delete" data-id="${item.id}">حذف</button>` : ''}
+                    <img class="img-fluid" src="/assets/images/user/Default.jpeg" alt="">
                 </div>
             </div>
         `;
@@ -127,15 +126,26 @@ function renderFeedBacks(feedBacks) {
         window.mySwiper.destroy();
     }
 
-    // Initialize Swiper
+    // Initialize Swiper با تنظیمات جدید
     window.mySwiper = new Swiper('.our-testimonials', {
         loop: true,
         slidesPerView: 1,
-        spaceBetween: 10,
+        spaceBetween: 20,
+        centeredSlides: true,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         },
+        breakpoints: {
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 30
+            },
+            992: {
+                slidesPerView: 2,
+                spaceBetween: 40
+            }
+        }
     });
 }
 function Validation() {

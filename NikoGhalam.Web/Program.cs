@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using NikoGhalam.Web.Context;
 using NikoGhalam.Web.Models;
@@ -19,6 +20,24 @@ builder.Services.AddHttpContextAccessor();
 
 
 builder.Services.AddControllersWithViews();
+
+
+// افزودن سرویس Response Compression (اصلاح شده)
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+    options.Providers.Add<BrotliCompressionProvider>();
+    options.Providers.Add<GzipCompressionProvider>(); // توجه: Gzip نه Gzp
+    options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
+    {
+        "application/json",
+        "text/html",
+        "text/plain",
+        "text/css",
+        "application/javascript",
+        "text/javascript"
+    });
+});
 
 #region  CorsPolicy
 
@@ -71,5 +90,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.UseResponseCompression();
 
 app.Run();

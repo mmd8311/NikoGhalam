@@ -1,0 +1,130 @@
+﻿@model Invoice
+<div class="tap-top">
+    <div><i class="fa-solid fa-angle-up"></i></div>
+</div><span class="cursor"><span class="cursor-move-inner"><span class="cursor-inner"></span></span><span class="cursor-move-outer"><span class="cursor-outer"></span></span></span>
+<section class="section-b-space py-0">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 px-0">
+                <div class="order-box-1">
+                    <img src="../assets/images/gif/success.gif" alt="">
+                    <h4>سفارش موفق</h4>
+                    <p>پرداخت با موفقیت انجام شد و سفارش شما در راه است</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-b-space">
+    <div class="custom-container container order-success">
+        <div class="row gy-4">
+            <div class="col-xl-8">
+                <div class="order-items sticky">
+                    <h4>اطلاعات سفارش</h4>
+                    <p>فاکتور سفارش به حساب ایمیل ثبت شده شما ارسال شده است. جزئیات سفارش خود را دوباره بررسی کنید</p>
+                    <div class="order-table">
+                        <div class="table-responsive theme-scrollbar">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>محصول</th>
+                                        <th>قیمت</th>
+                                        <th>تعداد</th>
+                                        <th>مجموع</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Items)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="cart-box">
+                                                    <a>
+                                                        <img src="@item.Product.ImageUrl" alt="@item.Product.Name">
+                                                    </a>
+                                                    <div>
+                                                        <a>
+                                                            <h5>@item.Product.Name</h5>
+                                                        </a>
+                                                        <p>فروشنده: <span>نیکوقلم</span></p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>@item.Price.ToString("N0") تومان</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.TotalAmount.ToString("N0") تومان</td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td> </td>
+                                        <td></td>
+                                        <td class="total fw-bold">مجموع:</td>
+                                        <td class="total fw-bold">@Model.TotalAmount.ToString("N0") تومان</td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="summery-box">
+                    <div class="sidebar-title">
+                        <div class="loader-line"></div>
+                        <h4>جزئیات سفارش</h4>
+                    </div>
+                    <div class="summery-content">
+                        <ul>
+                            <li>
+                                <p class="fw-semibold">مجموع محصولات (@Model.Items.Count)</p>
+                                <h6>@Model.Items.Sum(x => x.TotalAmount).ToString("N0") تومان</h6>
+                            </li>
+                            <li>
+                                <p>ارسال به</p><span>@Model.DeliveryAddress?.City ?? "عدم تعیین آدرس"</span>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <p>هزینه‌های ارسال</p><span>@ViewBag.ShippingCost.ToString("N0") تومان</span>
+                            </li>
+                            <li>
+                                <p>مجموع بدون مالیات بر ارزش افزوده</p><span>@ViewBag.Subtotal.ToString("N0") تومان</span>
+                            </li>
+                            <li>
+                                <p>شامل ۱۰٪ مالیات بر ارزش افزوده</p><span>@ViewBag.Tax.ToString("N0") تومان</span>
+                            </li>
+                        </ul>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h6>مجموع (تومان)</h6>
+                            <h5>@ViewBag.GrandTotal.ToString("N0") تومان</h5>
+                        </div>
+                      
+                    </div>
+                </div>
+                <div class="summery-footer">
+                    <div class="sidebar-title">
+                        <div class="loader-line"></div>
+                        <h4>آدرس ارسال</h4>
+                    </div>
+                    <ul>
+                        <li>
+                            <h6>@(Model.DeliveryAddress?.AddressText ?? "آدرس مشخص نشده است")</h6>
+                            <h6>
+                                @(Model.DeliveryAddress != null
+                                    ? $"{Model.DeliveryAddress.City}، {Model.DeliveryAddress.PostalCode}"
+                                    : "")
+                            </h6>
+                        </li>
+                        <li>
+                            <h5>@Model.IssueDate.ToString("yyyy/MM/dd")</h5>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+

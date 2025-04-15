@@ -42,7 +42,8 @@ namespace NikoGhalam.Web.Context
         Price = 598000,
         CreateDate = new DateTime(2024, 1, 1),
         UpdateDate = new DateTime(2024, 1, 1),
-        ImageUrl = "/assets/images/product/Gold.Webp"
+        ImageUrl = "/assets/images/product/Gold.Webp",
+        CoverImageUrl = "/assets/images/product/Cover-Gold.png"
     },
     new Product
     {
@@ -52,18 +53,22 @@ namespace NikoGhalam.Web.Context
         Price = 498000,
         CreateDate = new DateTime(2024, 1, 1),
         UpdateDate = new DateTime(2024, 1, 1),
-        ImageUrl = "/assets/images/product/Silver.Webp"
+        ImageUrl = "/assets/images/product/Silver.Webp",
+        CoverImageUrl = "/assets/images/product/Silver-Cover.png"
+
 
     },
         new Product
-    {
-        Id = new Guid("33333333-3333-3333-3333-333333333333"),
-        Name = "پک برنزی",
-        Description = "   با سلام و عرض ادب خدمت هنرجویان عزیز\r\n\r\n                                این برنامه طوری طراحی شده که بتوانید در هر مکان و هر زمانی به راحتی مهارت زیبانویسی خود را ارتقا دهید.\r\n\r\n                                این پک آموزشی شامل :\r\n\r\n                                نرم افزار\r\n                                بیش از ۲۰۰ فیلم آموزشی\r\n                                دفتر بارگذاری\r\n                                دفتر تمرین\r\n                                پشتیبانی\r\n\r\n                                برنزی (اقتصادی) : چت با پشتیبان  ۳۹۸ تومان",
-        Price = 398000,
-        CreateDate = new DateTime(2024, 1, 1),
-        UpdateDate = new DateTime(2024, 1, 1),
-        ImageUrl = "/assets/images/product/Browns.Webp"
+        {
+            Id = new Guid("33333333-3333-3333-3333-333333333333"),
+            Name = "پک برنزی",
+            Description = "   با سلام و عرض ادب خدمت هنرجویان عزیز\r\n\r\n                                این برنامه طوری طراحی شده که بتوانید در هر مکان و هر زمانی به راحتی مهارت زیبانویسی خود را ارتقا دهید.\r\n\r\n                                این پک آموزشی شامل :\r\n\r\n                                نرم افزار\r\n                                بیش از ۲۰۰ فیلم آموزشی\r\n                                دفتر بارگذاری\r\n                                دفتر تمرین\r\n                                پشتیبانی\r\n\r\n                                برنزی (اقتصادی) : چت با پشتیبان  ۳۹۸ تومان",
+            Price = 398000,
+            CreateDate = new DateTime(2024, 1, 1),
+            UpdateDate = new DateTime(2024, 1, 1),
+            ImageUrl = "/assets/images/product/Browns.Webp",
+            CoverImageUrl = "/assets/images/product/Browns-Cover.png"
+
 
         }
 );

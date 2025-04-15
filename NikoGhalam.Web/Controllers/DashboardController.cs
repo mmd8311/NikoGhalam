@@ -67,16 +67,12 @@ namespace NikoGhalam.Web.Controllers
                     {
                         UserId = UserId,
                         Name = entityDto.Name,
-                        Address = entityDto.Address,
-                        Phone = entityDto.Phone
                     };
                     await _context.UserDashboards.AddAsync(existingUser);
                 }
                 else
                 {
                     existingUser.Name = entityDto.Name;
-                    existingUser.Address = entityDto.Address;
-                    existingUser.Phone = entityDto.Phone;
                 }
 
                 await _context.SaveChangesAsync();
@@ -286,20 +282,29 @@ namespace NikoGhalam.Web.Controllers
 
         public async Task<IActionResult> Dashboard()
         {
-            var userPhone = await _context.Users.Select(p => p.PhoneNumber).FirstOrDefaultAsync();
-
-            if (string.IsNullOrEmpty(userPhone))
-            {
-                return View("Error", "شماره تلفن یافت نشد."); // یک صفحه خطا نمایش بده
-            }
-            var user = await _context.UserDashboards.FirstOrDefaultAsync(p => p.Phone == userPhone);
+            // دریافت شماره تلفن از جدول Users بر اساس UserId
+            var user = await _context.Users
+                .Where(u => u.Id == UserId)
+                .Select(u => new {
+                    Phone = u.PhoneNumber,
+                    Name = _context.UserDashboards
+                        .Where(ud => ud.UserId == UserId)
+                        .Select(ud => ud.Name)
+                        .FirstOrDefault()
+                })
+                .FirstOrDefaultAsync();
 
             if (user == null)
             {
-                user = new UserDashboard { Name = "نام ثبت نشده", Phone = "-" }; // مقدار پیش‌فرض
+                return View("Error", "کاربر یافت نشد.");
             }
 
-            return View(user);
+            var model = new UserDashboard
+            {
+                Name = user.Name ?? "نام ثبت نشده",
+            };
+
+            return View(model);
         }
 
         [HttpGet]
@@ -315,13 +320,14 @@ namespace NikoGhalam.Web.Controllers
                 });
             }
 
-            var userProfile = await _context.UserDashboards
-                .Where(u => u.UserId == UserId)
-                .Select(u => new
-                {
-                    Name = u.Name ?? "-",
-                    Phone = u.Phone ?? "-",
-                    Address = u.Address ?? "-"
+            var userProfile = await _context.Users
+                .Where(u => u.Id == UserId)
+                .Select(u => new {
+                    Phone = u.PhoneNumber,
+                    Name = _context.UserDashboards
+                        .Where(ud => ud.UserId == u.Id)
+                        .Select(ud => ud.Name)
+                        .FirstOrDefault()
                 })
                 .FirstOrDefaultAsync();
 
@@ -337,10 +343,13 @@ namespace NikoGhalam.Web.Controllers
             return Ok(new
             {
                 isSuccess = true,
-                profile = userProfile
+                profile = new
+                {
+                    Name = userProfile.Name ?? "-",
+                    Phone = userProfile.Phone ?? "-"
+                }
             });
         }
-
     }
 
 }

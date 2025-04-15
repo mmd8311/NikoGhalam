@@ -1,0 +1,98 @@
+[
+  {
+    "outputFileName": "wwwroot/assets/css/landing_page.min.css",
+    "inputFiles": [
+      "wwwroot/assets/css/landing_page.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/js/countdown.min.js",
+    "inputFiles": [
+      "wwwroot/assets/js/countdown.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/js/cookie.min.js",
+    "inputFiles": [
+      "wwwroot/assets/js/cookie.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/js/cursor.min.js",
+    "inputFiles": [
+      "wwwroot/assets/js/cursor.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/js/iconsax.min.js",
+    "inputFiles": [
+      "wwwroot/assets/js/iconsax.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/js/script.min.js",
+    "inputFiles": [
+      "wwwroot/assets/js/script.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/js/site.min.js",
+    "inputFiles": [
+      "wwwroot/assets/js/site.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/js/skeleton-loader.min.js",
+    "inputFiles": [
+      "wwwroot/assets/js/skeleton-loader.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/js/toastify.min.js",
+    "inputFiles": [
+      "wwwroot/assets/js/toastify.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/js/touchspin.min.js",
+    "inputFiles": [
+      "wwwroot/assets/js/touchspin.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/css/style.min.css",
+    "inputFiles": [
+      "wwwroot/assets/css/style.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/css/vendors/bootstrap.min.css",
+    "inputFiles": [
+      "wwwroot/assets/css/vendors/bootstrap.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/css/vendors/fontawesome.min.css",
+    "inputFiles": [
+      "wwwroot/assets/css/vendors/fontawesome.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/css/vendors/iconsax.min.css",
+    "inputFiles": [
+      "wwwroot/assets/css/vendors/iconsax.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/css/vendors/toastify.min.css",
+    "inputFiles": [
+      "wwwroot/assets/css/vendors/toastify.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/js/swiper-slider/swiper-custom.min.js",
+    "inputFiles": [
+      "wwwroot/assets/js/swiper-slider/swiper-custom.js"
+    ]
+  }
+]
