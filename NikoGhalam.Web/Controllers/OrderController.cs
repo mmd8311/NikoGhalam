@@ -182,7 +182,7 @@ namespace YourNamespace.Controllers
             int amountInRial = (int)(finalAmountToman * 10);
 
             string merchantId = "dbcd3bc2-e9e6-47b3-ba65-7987b241196e";
-            string callbackUrl = $"https://localhost:7275/Order/VerifyPayment?invoiceId={invoice.Id}";
+            string callbackUrl = $"https://nikoghalam.ir//Order/VerifyPayment?invoiceId={invoice.Id}";
             string description = $"پرداخت فاکتور شماره {invoice.InvoiceNumber}";
 
             var payload = new
@@ -199,7 +199,7 @@ namespace YourNamespace.Controllers
             {
                 var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
-                var response = await client.PostAsync("https://sandbox.zarinpal.com/pg/v4/payment/request.json", content);
+                var response = await client.PostAsync("https://api.zarinpal.com/pg/v4/payment/request.json", content);
                 var responseString = await response.Content.ReadAsStringAsync();
 
                 var json = JObject.Parse(responseString);
@@ -207,7 +207,7 @@ namespace YourNamespace.Controllers
                 if (json["data"] != null && json["data"]["code"]?.ToString() == "100")
                 {
                     string authority = json["data"]["authority"]?.ToString();
-                    string gatewayUrl = $"https://sandbox.zarinpal.com/pg/StartPay/{authority}";
+                    string gatewayUrl = $"https://www.zarinpal.com/pg/StartPay/{authority}";
 
                     return Ok(new
                     {
@@ -283,7 +283,7 @@ namespace YourNamespace.Controllers
             using (var client = new HttpClient())
             {
                 var content = new StringContent(JsonConvert.SerializeObject(parameters), Encoding.UTF8, "application/json");
-                var response = await client.PostAsync("https://sandbox.zarinpal.com/pg/v4/payment/verify.json", content);
+                var response = await client.PostAsync("https://api.zarinpal.com/pg/v4/payment/verify.json", content);
                 var responseString = await response.Content.ReadAsStringAsync();
                 JObject responseObject = JObject.Parse(responseString);
 

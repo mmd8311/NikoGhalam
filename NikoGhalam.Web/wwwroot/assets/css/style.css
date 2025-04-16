@@ -1,4 +1,4 @@
-﻿@font-face {
+﻿﻿@font-face {
     font-family: iransansRegular;
     src: url("../fonts/iransans-regular.woff");
     font-style: normal;
@@ -45,6 +45,7 @@ body.skeleton_body {
 .skeleton_body .home-section-3 .home-banner .contain-banner {
     left: 0;
 }
+
 .tap-top {
     background: rgba(var(--theme-default));
     border: none;
@@ -2480,6 +2481,7 @@ body.skeleton_body {
 .product-box-4:hover .product-detail h6 {
     color: rgba(var(--theme-default))
 }
+
 .product-detail {
     direction: rtl !important;
 }
@@ -4776,6 +4778,7 @@ footer .footer-content h5 {
         height: 230px
     }
 }
+
 .ratio_square-2 .bg-size:before {
     content: "";
     display: block;
@@ -5617,6 +5620,7 @@ footer .footer-content h5 {
     .btn_outline.sm {
         padding: 6px calc(4.8px + 1vw)
     }
+
 @media (max-width: 991px) {
     .heading-banner {
         position: relative;
@@ -5887,6 +5891,7 @@ footer .footer-content h5 {
     margin-top: 4px;
     transform: rotate(-45deg)
 }
+
 .sidebar-title {
     margin-bottom: 30px;
     position: relative
@@ -7344,6 +7349,7 @@ footer .footer-content h5 {
         font-size: 16px;
         margin-right: 5px; /* Adds some space after the colon */
     }
+
 .cart-bottom > span {
     display: block;
     font-size: calc(14.8px + .0625vw);
@@ -7431,25 +7437,25 @@ footer .footer-content h5 {
     }
 
 
-.cart-table table tbody tr td:last-child {
-    min-width: 70px
-}
-
-.cart-table table tbody tr td .quantity {
-    gap: 10px;
-    justify-content: center;
-    width: auto
-}
-
-    .cart-table table tbody tr td .quantity button,
-    .cart-table table tbody tr td .quantity input {
-        border-radius: 4px
+    .cart-table table tbody tr td:last-child {
+        min-width: 70px
     }
 
-.cart-table table tbody tr td a .iconsax {
-    --Iconsax-Size: 20px;
-    --Iconsax-Color: rgba(var(--theme-font-color), 1)
-}
+    .cart-table table tbody tr td .quantity {
+        gap: 10px;
+        justify-content: center;
+        width: auto
+    }
+
+        .cart-table table tbody tr td .quantity button,
+        .cart-table table tbody tr td .quantity input {
+            border-radius: 4px
+        }
+
+    .cart-table table tbody tr td a .iconsax {
+        --Iconsax-Size: 20px;
+        --Iconsax-Color: rgba(var(--theme-font-color), 1)
+    }
 
 .cart-table .no-data {
     display: none
@@ -7604,13 +7610,13 @@ header .top_header p span {
         width: 80px
     }
 
- .testimonials-box .customer-img div {
-  width: 100%
-}
+    .testimonials-box .customer-img div {
+        width: 100%
+    }
 
-.testimonials-box .customer-img div h5 span {
-  float: right
-}
+        .testimonials-box .customer-img div h5 span {
+            float: right
+        }
 
 /* استایل برای دکمه‌های افزایش و کاهش */
 .quantity-box {
@@ -7726,8 +7732,9 @@ header .top_header p span {
     display: flex;
     width: 100%
 }
+
 .order-summary ul {
-margin-top: 20px;
+    margin-top: 20px;
 }
 
 /* استایل‌های جدید برای بخش فیدبک‌ها */
@@ -7824,22 +7831,22 @@ margin-top: 20px;
         font-size: 20px;
     }
 
-    /* استایل بخش بازخوردها */
+/* استایل بخش بازخوردها */
 .feedback-box {
     background-color: #f9f9f9; /* رنگ پس‌زمینه */
     padding: 20px;
     border-radius: 10px;
 }
 
-.feedback-box .customer-item {
-    text-align: center;
-}
+    .feedback-box .customer-item {
+        text-align: center;
+    }
 
-.feedback-box .customer-img img {
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-}
+    .feedback-box .customer-img img {
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+    }
 
 .about-tag img {
     width: 30px !important;
