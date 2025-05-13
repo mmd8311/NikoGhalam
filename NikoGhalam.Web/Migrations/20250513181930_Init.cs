@@ -206,6 +206,7 @@ namespace NikoGhalam.Web.Migrations
                     IssueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeliveryAddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     InvoiceNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PaymentRefId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)

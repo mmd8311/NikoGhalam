@@ -12,8 +12,8 @@ using NikoGhalam.Web.Context;
 namespace NikoGhalam.Web.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250415113827_add-null-to-PaymentRefId")]
-    partial class addnulltoPaymentRefId
+    [Migration("20250513181930_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

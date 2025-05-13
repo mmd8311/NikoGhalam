@@ -182,7 +182,7 @@ namespace YourNamespace.Controllers
             int amountInRial = (int)(finalAmountToman * 10);
 
             string merchantId = "dbcd3bc2-e9e6-47b3-ba65-7987b241196e";
-            string callbackUrl = $"https://nikoghalam.ir//Order/VerifyPayment?invoiceId={invoice.Id}";
+            string callbackUrl = $"https://nikoghalam.ir/Order/VerifyPayment?invoiceId={invoice.Id}";
             string description = $"پرداخت فاکتور شماره {invoice.InvoiceNumber}";
 
             var payload = new

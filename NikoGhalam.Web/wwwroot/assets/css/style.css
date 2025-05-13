@@ -1,15 +1,21 @@
-﻿﻿@font-face {
+﻿/*﻿@font-face {
     font-family: iransansRegular;
     src: url("../fonts/iransans-regular.woff");
     font-style: normal;
+}*/
+
+﻿@font-face {
+    font-family: nikoGhalam;
+    src: url("../fonts/Niko-ghalam-font.woff");
 }
 
+
 .font-pelakFA {
-    font-family: iransansRegular !important;
+    font-family: nikoGhalam !important;
 }
 
 body, a, h5, h1, h2, h3, h4, h6 {
-    font-family: iransansRegular !important;
+    font-family: nikoGhalam !important;
 }
 
 
