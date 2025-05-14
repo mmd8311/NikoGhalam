@@ -1,12 +1,9 @@
-﻿/*﻿@font-face {
-    font-family: iransansRegular;
-    src: url("../fonts/iransans-regular.woff");
-    font-style: normal;
-}*/
-
 ﻿@font-face {
     font-family: nikoGhalam;
-    src: url("../fonts/Niko-ghalam-font.woff");
+    src: url("../fonts/Niko-ghalam-font.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 
@@ -15,7 +12,7 @@
 }
 
 body, a, h5, h1, h2, h3, h4, h6 {
-    font-family: nikoGhalam !important;
+    font-family: nikoGhalam , sans-serif !important;
 }
 
 
@@ -2582,7 +2579,7 @@ header .header-1 .main-menu nav .nav-menu > li:last-child {
 header .header-1 .main-menu nav .nav-menu > li .nav-link {
     color: rgba(var(--theme-font-color), 1);
     display: block;
-    font-size: 16px;
+    font-size: 20px;
     padding: calc(11px + 1.25vw) 0;
     position: relative
 }
